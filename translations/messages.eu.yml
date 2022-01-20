@@ -3,102 +3,102 @@ messages.appTitle: "Adierazleak"
 ###################################################
 # MENU
 ###################################################
-navitem.administration: "Administración"
-navitem.users: "Usuarios"
-navitem.indicator: "Indicadores"
-navitem.observation: "Mis indicadores"
+navitem.administration: "Administrazioa"
+navitem.users: "Erabiltzaileak"
+navitem.indicator: "Indikatzaileak"
+navitem.observation: "Nire indikatzaileak"
 
 ###################################################
 # TITLES
 ###################################################
-title.myObservations: "Mis indicadores"
-title.observationsByIndicator: "Observaciones por indicador"
+title.myObservations: "Nire indikatzaileak"
+title.observationsByIndicator: "Sarrerak indikatzaileko"
 
 ###################################################
 # USER ENTITY AND LOGIN PAGE
 ###################################################
-security.login.username: "Nombre de usuario"
-security.login.password: "Password"
-security.login.remember_me: "Recordarme"
-security.login.submit: "Entrar"
-security.login.invalid_credentials: 'El usuario y contraseña no son correctos'
-security.login.system_error: 'Debido a un error del sistema, no se puede comprobar el usuario'
-security.login.remember_password: 'Se te ha olvidado la contraseña?'
+security.login.username: "Erabiltzailea"
+security.login.password: "Pasahitza"
+security.login.remember_me: "Oroitu"
+security.login.submit: "Sartu"
+security.login.invalid_credentials: 'Erabiltzailea eta pasahitza ez dira zuzenak'
+security.login.system_error: 'Sistema akatsa dela eta, ezin izan da erabiltzailea konprobatu'
+security.login.remember_password: 'Pasahitza ahaztu al zaizu?'
 security.password:
-security.resetted: 'La contraseña se ha cambiado'
-btn.loginera.itzuli: 'Volver a la página de login'
-'Credenciales no válidas.': 'Credenciales no válidas.'
+security.resetted: 'Pasahitza berezarri da'
+btn.loginera.itzuli: 'Login orrira itzuli'
+'Credenciales no válidas.': 'Kredentzialak ez dira zuzenak.'
 
 user.id: "Id"
-user.username: "Nombre de usuario"
-user.firstName: "Nombre"
-user.roles: "Roles"
-user.email: "Email"
-user.new_password: "Nueva contraseña"
-user.repeat_new_password: "Repetir nueva contraseña"
+user.username: "Erabiltzailea"
+user.firstName: "Izena"
+user.roles: "Rolak"
+user.email: "Emaila"
+user.new_password: "Pasahitz berria"
+user.repeat_new_password: "Errepikatu pasahitz berria"
 
-link.logout: "Salir"
+link.logout: "Irten"
 
 ###################################################
 # SPECIFIC ENTITIES
 ###################################################
-indicator.descriptionEs: "Descripción"
-indicator.descriptionEu: "Descripción (Euskera)"
-indicator.requiredRoles: "Roles que lo introducen"
-label.noValueDefined: "No hay valores"
-label.indicator: "Descripción"
-label.lastValue: "Último valor"
-label.options: "Opciones"
+indicator.descriptionEs: "Deskripzioa"
+indicator.descriptionEu: "Deskripzioa (Euskera)"
+indicator.requiredRoles: "Sartzen duten rolak"
+label.noValueDefined: "Ez dago baliorik"
+label.indicator: "Deskripzioa"
+label.lastValue: "Azken balioa"
+label.options: "Aukerak"
 
-observation.year: "Año"
-observation.month: "Mes"
-observation.indicator: "Indicador"
-observation.value: "Valor"
-observation.notes: "Notas"
-label.year: "Año"
-label.month: "Mes"
-label.value: "Valor"
-label.notes: "Notas"
+observation.year: "Urtea"
+observation.month: "Hilabetea"
+observation.indicator: "Indikatzailea"
+observation.value: "Balioa"
+observation.notes: "Oharrak"
+label.year: "Urte"
+label.month: "Hilabetea"
+label.value: "Balioa"
+label.notes: "Oharrak"
 
 ###################################################
 # BUTTONS
 ###################################################
-btn.cancel: "Volver"
-btn.save: "Guardar"
-btn.new: "Nuevo"
-btn.edit: "Edit"
-btn.show: "Ver"
-btn.delete: "Borrar"
-btn.search: "Buscar"
-table.options: "Opciones"
+btn.cancel: "Itzuli"
+btn.save: "Gorde"
+btn.new: "Berria"
+btn.edit: "Editatu"
+btn.show: "Ikusi"
+btn.delete: "Ezabatu"
+btn.search: "Bilatu"
+table.options: "Aukerak"
 
 ###################################################
 # MESSAGES
 ###################################################
-messages.confirmacion: "Confirmación"
-messages.confirmationDetail: "¿Esta seguro de que desea eliminar el registro?"
-messages.results0: "No se han encontrado resultados"
-messages.si: "Sí"
-messages.no: "No"
-messages.userSaved: "El usuario se ha guardado correctamente"
-messages.userDeleted: "El usuario se ha eliminado correctamente"
-messages.existingUser: "El nombre de usuario o el email ya existe"
-messages.invalidCsrfToken: "CSRF Token inválido"
-messages.observationAlreadyExist: "Ya ha introducido ese dato"
+messages.confirmacion: "Konfirmazioa"
+messages.confirmationDetail: "¿Ziur al zaude erregistroa ezabatu nahi duzula?"
+messages.results0: "Ez da emaitzarik aurkitu"
+messages.si: "Bai"
+messages.no: "Ez"
+messages.userSaved: "Erabiltzailea behar bezala gorde da"
+messages.userDeleted: "Erabiltzailea behar bezala ezabatu da"
+messages.existingUser: "Erabiltzailea edo emaila dagoeneko existitzen da"
+messages.invalidCsrfToken: "CSRF Tokenak ez du balio"
+messages.observationAlreadyExist: "Datu hori jadanik sartuta dago"
 
 ###################################################
 # MODAL TITLES
 ###################################################
-modal.title.observation: "Nuevo valor de indicador"
+modal.title.observation: "Indikatzailearen balio berri bat"
 
 ###################################################
 # ROLES
 ###################################################
-ROLE_USER: "Usuario"
-ROLE_ADMIN: "Administrador"
-ROLE_HAZ: SAC
-ROLE_INFORMATIKA: Informática
-ROLE_IDAZKARITZA: Secretaría
-ROLE_GIZA_BALIABIDEAK: Recursos Humanos
-ROLE_KONTU_HARTZAILETZA: Intervención
-ROLE_DIRUZAINTZA: Tesorería
+ROLE_USER: "Erabiltzailea"
+ROLE_ADMIN: "Admnistratzailea"
+ROLE_HAZ: "HAZ"
+ROLE_INFORMATIKA: "Informatika"
+ROLE_IDAZKARITZA: "Idazkaritza"
+ROLE_GIZA_BALIABIDEAK: "Giza baliabideak"
+ROLE_KONTU_HARTZAILETZA: "Kontuhartzailetza"
+ROLE_DIRUZAINTZA: "Diruzaintza"
