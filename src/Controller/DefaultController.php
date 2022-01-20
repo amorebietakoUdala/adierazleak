@@ -15,7 +15,7 @@ class DefaultController extends AbstractController
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();
-        return $this->redirectToRoute('observation_index',[
+        return $this->redirectToRoute('myObservation_index',[
             '_locale' => $locale
         ]);
     }

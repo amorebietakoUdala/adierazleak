@@ -1,9 +1,7 @@
 import '../js/common/list.js';
 
 import $ from 'jquery';
-import {
-    Controller
-} from 'stimulus';
+import { Controller } from '@hotwired/stimulus';
 
 import {
     Modal
