@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'messages.appTitle' | trans }}{% endblock %}
+
+{% block body %}
+      <h1>{{'title.myObservations' | trans }}</h1>
+      <div {{ stimulus_controller('reload-content', 
+               { 'url': path('myObservation_index', { 'ajax' : 'true'}),
+                  'locale': app.request.locale|split('_')[0] })}} data-action="entity:success->reload-content#refreshContent entity:init->reload-content#refreshContent">
+
+         <div {{ stimulus_controller('entity', 
+                  { 'locale': app.request.locale|split('_')[0], 
+                  'entitySaveUrl': path('observation_save'),
+                  })}} 
+               class="container-fluid">
+               <div data-reload-content-target="content">
+                  {{ include('observation/_myObservation_list.html.twig', { 'indicators': indicators, 'observations': observations }) }}
+               </div>
+                {{ include('common/_modal.html.twig', {
+                    'modalTitle': 'modal.title.observation' | trans,
+                    'formTemplate': 'observation/_form.html.twig'
+                    }) 
+                }}
+            {{ include('common/_alert.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

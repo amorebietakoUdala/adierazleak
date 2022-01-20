@@ -1,0 +1,8 @@
+# Roles
+ROLE_HAZ: "SAC"
+ROLE_ONGIZATEA: "Bienestar social"
+ROLE_USER: "Usuario"
+
+user.yearsWorked: "Años trabajados"
+
+security.login.remember_me: "Recordarme"

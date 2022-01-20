@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'title.observation.show' | trans | capitalize }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.observation.show' | trans | capitalize }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ observation.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'observation.year' | trans }}</th>
+                <td>{{ observation.year }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'observation.month' | trans }}</th>
+                <td>{{ department.month }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'observation.indicator' | trans }}</th>
+                <td>{{ department.indicator }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'observation.value' | trans }}</th>
+                <td>{{ department.value }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'observation.notes' | trans }}</th>
+                <td>{{ department.notes }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('myObservation_index') }}">back to list</a>
+
+    <a href="{{ path('observation_edit', {'id': observation.id}) }}">edit</a>
+
+    {{ include('observation/_delete_form.html.twig') }}
+{% endblock %}

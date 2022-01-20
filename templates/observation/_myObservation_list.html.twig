@@ -1,0 +1,48 @@
+<table id="taula" class="table">
+   <thead>
+         <tr>
+            <th>{{ 'label.indicator' | trans }}</th>
+            <th>{{ 'label.lastValue' | trans }}</th>
+            <th>{{ 'label.options' | trans }}</th>
+         </tr>
+   </thead>
+   <tbody>
+   {% for observation in observations %}
+         <tr>
+            <td>{{ (app.request.locale == 'es') ? indicators[loop.index0].descriptionEs : indicators[loop.index0].descriptionEu }}</td>
+            {% if observation.value is defined %}
+               <td>
+                  <span
+                     {% if observation.notes is defined %}  
+                        data-toggle="tooltip" 
+                        data-toggle="top"
+                        title="{{ observation.notes }}"
+                     {% endif %}>
+                     {{ observation.value }} ({{ observation.year~'/'~ ( observation.month < 10 ? '0'~observation.month : observation.month) }})&nbsp; 
+                     <a href="#" 
+                        data-action="entity#edit" 
+                        data-url="{{ path('observation_edit', {'id': observation.id}) }}" 
+                        data-allowEdit="true">
+                        <i class="fa fa-edit" title='{{ "btn.edit" | trans | capitalize }}'></i>
+                     </a>
+                  </span>
+               </td>
+            {% else %}
+               <td>{{ 'label.noValueDefined' | trans }}</td>
+            {% endif %}
+            <td>
+               <a href="#" data-action="click->entity#openModal" data-indicatorId="{{ indicators[loop.index0].id }}">
+                  <i class="fa fa-plus" title='{{ "btn.new" | trans | capitalize }}'></i>&nbsp;
+               </a>
+               <a href="{{ path('observation_search', {'indicator': indicators[loop.index0].id }) }}">
+                  <i class="fa fa-search" aria-hidden="true"></i>&nbsp;
+               </a>
+            </td>
+         </tr>
+   {% else %}
+         <tr>
+            <td colspan="4">no records found</td>
+         </tr>
+   {% endfor %}
+   </tbody>
+</table>

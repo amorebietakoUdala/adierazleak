@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'title.indicator.new' | trans | capitalize }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.indicator.new' | trans | capitalize }}</h1>
+
+    {{ include('indicator/_form.html.twig') }}
+
+    <a href="{{ path('indicator_index') }}">back to list</a>
+
+    {{ include('indicator/_delete_form.html.twig') }}
+{% endblock %}

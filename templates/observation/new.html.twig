@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'title.observation.new' | trans | capitalize }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.observation.new' | trans | capitalize }}</h1>
+
+    {{ include('observation/_form.html.twig') }}
+
+    <a href="{{ path('myObservation_index') }}">back to list</a>
+
+{% endblock %}

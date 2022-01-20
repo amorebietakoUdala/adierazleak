@@ -1,0 +1,8 @@
+# Roles
+ROLE_HHRR: "Giza baliabideak"
+ROLE_BOSS: "Sailburua"
+ROLE_USER: "Erabiltzailea"
+
+user.yearsWorked: "Lan egindako urteak"
+
+security.login.remember_me: "Oroitu"
