@@ -4,28 +4,34 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "10f513f6d2f79b8f89e11c8884f0d9a1",
+    "content-hash": "a8b03d6cf389cccf5adbb956bd338669",
     "packages": [
         {
             "name": "amorebietakoudala/user-bundle",
-            "version": "dev-main",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amorebietakoUdala/user-bundle.git",
+                "reference": "56f676d5b28373433bb511bb71536142d5ad0664"
+            },
             "dist": {
-                "type": "path",
-                "url": "../../bundles/user-bundle",
-                "reference": "41dd15e1741b2f268f4c58dba0ec235b9ac82058"
+                "type": "zip",
+                "url": "https://api.github.com/repos/amorebietakoUdala/user-bundle/zipball/56f676d5b28373433bb511bb71536142d5ad0664",
+                "reference": "56f676d5b28373433bb511bb71536142d5ad0664",
+                "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "^2.1",
                 "php": "^7.2.5",
-                "symfony/form": "^4.4||5.*",
-                "symfony/framework-bundle": "^4.4||5.*",
-                "symfony/ldap": "^4.4||5.*",
+                "symfony/form": "^5.3",
+                "symfony/framework-bundle": "^5.3",
+                "symfony/ldap": "^5.3",
                 "symfony/security-bundle": "^5.3"
             },
             "require-dev": {
-                "symfony/browser-kit": "^4.4||^5.1",
-                "symfony/css-selector": "^4.4||^5.1",
-                "symfony/phpunit-bridge": "^4.4||^5.1"
+                "symfony/browser-kit": "^5.3",
+                "symfony/css-selector": "^5.3",
+                "symfony/phpunit-bridge": "^5.3"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -33,11 +39,7 @@
                     "AMREU\\UserBundle\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "AMREU\\UserBundle\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Amorebietako Udala",
@@ -45,9 +47,11 @@
                 }
             ],
             "description": "AmorebietakoUdala erabiltzaile bundlela",
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/amorebietakoUdala/user-bundle/issues",
+                "source": "https://github.com/amorebietakoUdala/user-bundle/tree/1.2"
+            },
+            "time": "2022-01-21T11:54:18+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",
@@ -7655,9 +7659,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "amorebietakoudala/user-bundle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

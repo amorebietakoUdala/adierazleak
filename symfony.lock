@@ -1,6 +1,6 @@
 {
     "amorebietakoudala/user-bundle": {
-        "version": "0.9.2"
+        "version": "dev-main"
     },
     "doctrine/annotations": {
         "version": "1.0",
@@ -248,7 +248,7 @@
         ]
     },
     "symfony/form": {
-        "version": "v5.1.8"
+        "version": "v5.4.2"
     },
     "symfony/framework-bundle": {
         "version": "5.4",
@@ -327,7 +327,7 @@
         "version": "v1.20.0"
     },
     "symfony/polyfill-intl-icu": {
-        "version": "v1.17.0"
+        "version": "v1.24.0"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.17.0"

@@ -1,4 +1,4 @@
-messages.appTitle: "Adierazleak"
+messages.appTitle: "Indikatzaileak"
 
 ###################################################
 # MENU
@@ -13,7 +13,7 @@ navitem.observation: "Nire indikatzaileak"
 ###################################################
 title.myObservations: "Nire indikatzaileak"
 title.observationsByIndicator: "Sarrerak indikatzaileko"
-title.indicatorIndex: "Adierazleak"
+title.indicatorIndex: "Indikatzaileak"
 
 ###################################################
 # USER ENTITY AND LOGIN PAGE
