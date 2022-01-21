@@ -21,6 +21,7 @@
         "symfony/framework-bundle": "5.*",
         "symfony/ldap": "5.*",
         "symfony/routing": "5.*",
+        "symfony/runtime": "5.*",
         "symfony/security-bundle": "5.*",
         "symfony/security-core": "5.*",
         "symfony/translation": "5.*",
