@@ -1,8 +1,11 @@
 # Roles
-ROLE_HAZ: "SAC"
-ROLE_ONGIZATEA: "Bienestar social"
 ROLE_USER: "Usuario"
-
-user.yearsWorked: "Años trabajados"
+ROLE_ADMIN: "Administrador"
+ROLE_HAZ: SAC
+ROLE_INFORMATIKA: Informática
+ROLE_IDAZKARITZA: Secretaría
+ROLE_GIZA_BALIABIDEAK: Recursos Humanos
+ROLE_KONTU_HARTZAILETZA: Intervención
+ROLE_DIRUZAINTZA: Tesorería
 
 security.login.remember_me: "Recordarme"

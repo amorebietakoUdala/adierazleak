@@ -1,8 +1,11 @@
 # Roles
-ROLE_HHRR: "Giza baliabideak"
-ROLE_BOSS: "Sailburua"
 ROLE_USER: "Erabiltzailea"
-
-user.yearsWorked: "Lan egindako urteak"
+ROLE_ADMIN: "Admnistratzailea"
+ROLE_HAZ: "HAZ"
+ROLE_INFORMATIKA: "Informatika"
+ROLE_IDAZKARITZA: "Idazkaritza"
+ROLE_GIZA_BALIABIDEAK: "Giza baliabideak"
+ROLE_KONTU_HARTZAILETZA: "Kontuhartzailetza"
+ROLE_DIRUZAINTZA: "Diruzaintza"
 
 security.login.remember_me: "Oroitu"

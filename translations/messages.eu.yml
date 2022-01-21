@@ -13,6 +13,7 @@ navitem.observation: "Nire indikatzaileak"
 ###################################################
 title.myObservations: "Nire indikatzaileak"
 title.observationsByIndicator: "Sarrerak indikatzaileko"
+title.indicatorIndex: "Adierazleak"
 
 ###################################################
 # USER ENTITY AND LOGIN PAGE
@@ -90,6 +91,7 @@ messages.observationAlreadyExist: "Datu hori jadanik sartuta dago"
 # MODAL TITLES
 ###################################################
 modal.title.observation: "Indikatzailearen balio berri bat"
+modal.title.indicator: "Indikatzaile berri bat"
 
 ###################################################
 # ROLES

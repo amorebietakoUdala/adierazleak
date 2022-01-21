@@ -13,6 +13,7 @@ navitem.observation: "Mis indicadores"
 ###################################################
 title.myObservations: "Mis indicadores"
 title.observationsByIndicator: "Observaciones por indicador"
+title.indicatorIndex: "Indicadores"
 
 ###################################################
 # USER ENTITY AND LOGIN PAGE
@@ -90,6 +91,7 @@ messages.observationAlreadyExist: "Ya ha introducido ese dato"
 # MODAL TITLES
 ###################################################
 modal.title.observation: "Nuevo valor de indicador"
+modal.title.indicator: "Nuevo indicador"
 
 ###################################################
 # ROLES
