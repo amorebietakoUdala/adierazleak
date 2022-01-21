@@ -3,16 +3,16 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends BaseFixture
 {
-    private $passwordEncoder;
+    private $passwordHasher;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
-        $this->passwordEncoder = $passwordEncoder;
+        $this->passwordHasher = $passwordHasher;
     }
 
     protected function loadData(ObjectManager $manager)
@@ -23,7 +23,7 @@ class UserFixtures extends BaseFixture
             $user->setEmail(sprintf('user%d@amorebieta.eus', $i));
             $user->setFirstName($this->faker->firstName);
 
-            $user->setPassword($this->passwordEncoder->encodePassword(
+            $user->setPassword($this->passwordHasher->hashPassword(
                 $user,
                 'engage'
             ));
@@ -39,7 +39,7 @@ class UserFixtures extends BaseFixture
             $user->setFirstName($this->faker->firstName);
             $user->setRoles(['ROLE_ADMIN']);
 
-            $user->setPassword($this->passwordEncoder->encodePassword(
+            $user->setPassword($this->passwordHasher->hashPassword(
                 $user,
                 'engage'
             ));
