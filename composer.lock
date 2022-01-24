@@ -4,15 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "214760215ea15c3d58049eb7d02c7997",
+    "content-hash": "a8b03d6cf389cccf5adbb956bd338669",
     "packages": [
         {
             "name": "amorebietakoudala/user-bundle",
-            "version": "dev-main",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amorebietakoUdala/user-bundle.git",
+                "reference": "e667f3e9e121f9215dd7eaa0778d589f9420f06f"
+            },
             "dist": {
-                "type": "path",
-                "url": "../../bundles/user-bundle",
-                "reference": "56f676d5b28373433bb511bb71536142d5ad0664"
+                "type": "zip",
+                "url": "https://api.github.com/repos/amorebietakoUdala/user-bundle/zipball/e667f3e9e121f9215dd7eaa0778d589f9420f06f",
+                "reference": "e667f3e9e121f9215dd7eaa0778d589f9420f06f",
+                "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "^2.1",
@@ -33,11 +39,7 @@
                     "AMREU\\UserBundle\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "AMREU\\UserBundle\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Amorebietako Udala",
@@ -45,9 +47,11 @@
                 }
             ],
             "description": "AmorebietakoUdala erabiltzaile bundlela",
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/amorebietakoUdala/user-bundle/issues",
+                "source": "https://github.com/amorebietakoUdala/user-bundle/tree/1.2.1"
+            },
+            "time": "2022-01-24T10:43:45+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",
@@ -7654,11 +7658,9 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": {
-        "amorebietakoudala/user-bundle": 20
-    },
-    "prefer-stable": true,
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.2.5",
