@@ -189,7 +189,7 @@ class ObservationController extends AbstractController
                 'form' => $form->createView(),
             ]);
         } else {
-            return $this->render('observation/myObservation_list.html.twig', [
+            return $this->render('observation/_myObservation_list.html.twig', [
                 'indicators' => $indicators,
                 'observations' => $lastObservations,
             ]);

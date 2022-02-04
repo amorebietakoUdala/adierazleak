@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Indicator;
 use App\Entity\Observation;
 use Doctrine\Persistence\ObjectManager;
 
@@ -13,47 +14,20 @@ class ObservationFixtures extends BaseFixture
 
     protected function loadData(ObjectManager $manager)
     {
-        $year = 2021;
-        $this->createMany(12, 'haz_observations_2021', function ($i) use ($manager, $year) {
-            $observation = new Observation();
-            $observation->setYear($year);
-            $observation->setMonth($i+1);
-            $observation->setValue($this->faker->numberBetween(0, 100));
-            $observation->setIndicator($this->getRandomReference('haz_indicators'));
-
-            return $observation;
-        });
-
-        $this->createMany(12, 'informatika_indicators_2021', function ($i) use ($manager, $year) {
-            $observation = new Observation();
-            $observation->setYear($year);
-            $observation->setMonth($i+1);
-            $observation->setValue($this->faker->numberBetween(0, 100));
-            $observation->setIndicator($this->getRandomReference('informatika_indicators'));
-
-            return $observation;
-        });
-
-        $year = 2022;
-        $this->createMany(12, 'haz_observations_2022', function ($i) use ($manager, $year) {
-            $observation = new Observation();
-            $observation->setYear($year);
-            $observation->setMonth($i+1);
-            $observation->setValue($this->faker->numberBetween(0, 100));
-            $observation->setIndicator($this->getRandomReference('haz_indicators'));
-
-            return $observation;
-        });
-
-        $this->createMany(12, 'informatika_indicators_2022', function ($i) use ($manager, $year) {
-            $observation = new Observation();
-            $observation->setYear($year);
-            $observation->setMonth($i+1);
-            $observation->setValue($this->faker->numberBetween(0, 100));
-            $observation->setIndicator($this->getRandomReference('informatika_indicators'));
-
-            return $observation;
-        });
+        for ($year=2021;$year<=2022; $year++){
+            $indicators = $manager->getRepository(Indicator::class)->findAll();
+            foreach ($indicators as $indicator) {
+                $this->createMany(12, "haz_observations".$year."_".$indicator, function ($i) use ($manager, $year, $indicator) {
+                    $observation = new Observation();
+                    $observation->setYear($year);
+                    $observation->setMonth($i+1);
+                    $observation->setValue($this->faker->numberBetween(0, 100));
+                    $observation->setIndicator($indicator);
+        
+                    return $observation;
+                });
+            }
+        }
         
         $manager->flush();
     }

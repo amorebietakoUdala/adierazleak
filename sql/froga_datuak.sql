@@ -1,3 +1,4 @@
+/* */
 INSERT INTO observation values (1, 1, 2021, 1, 10, null);
 INSERT INTO observation values (2, 1, 2021, 2, 20, null);
 INSERT INTO observation values (3, 1, 2021, 3, 15, null);
