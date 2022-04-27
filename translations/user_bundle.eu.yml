@@ -5,7 +5,6 @@ ROLE_HAZ: "HAZ"
 ROLE_INFORMATIKA: "Informatika"
 ROLE_IDAZKARITZA: "Idazkaritza"
 ROLE_GIZA_BALIABIDEAK: "Giza baliabideak"
-ROLE_KONTU_HARTZAILETZA: "Kontuhartzailetza"
-ROLE_DIRUZAINTZA: "Diruzaintza"
+ROLE_EKONOMIA: "Ekonomia"
 
 security.login.remember_me: "Oroitu"

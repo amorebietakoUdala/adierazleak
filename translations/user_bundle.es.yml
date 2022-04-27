@@ -5,7 +5,6 @@ ROLE_HAZ: SAC
 ROLE_INFORMATIKA: Informática
 ROLE_IDAZKARITZA: Secretaría
 ROLE_GIZA_BALIABIDEAK: Recursos Humanos
-ROLE_KONTU_HARTZAILETZA: Intervención
-ROLE_DIRUZAINTZA: Tesorería
+ROLE_EKONOMIA: Economía
 
 security.login.remember_me: "Recordarme"
