@@ -209,12 +209,27 @@ class ObservationController extends AbstractController
     }
 
     private function findIndicatorsForRoles(IndicatorRepository $indicatorRepository, $roles = null) {
-        if (null !== $roles) {
-            $indicators = $indicatorRepository->findByRoles($roles);
-        } else {
+        $indicators = [];
+        $cleanRoles = null;
+        if ( null !== $roles ) {
+            $cleanRoles = $this->removeUnnecesaryRoles($roles);
+        }
+        if ($this->isGranted("ROLE_ADMIN") && count($cleanRoles) === 0 ) {
             $indicators = $indicatorRepository->findAll();
+        } elseif (null !== $cleanRoles) {
+            $indicators = $indicatorRepository->findByRoles($cleanRoles);
         }
         return $indicators;
+    }
+
+    private function removeUnnecesaryRoles($roles) {
+        if (($key = array_search('ROLE_USER', $roles)) !== false) {
+            unset($roles[$key]);
+        }
+        if (($key = array_search('ROLE_ADMIN', $roles)) !== false) {
+            unset($roles[$key]);
+        }
+        return $roles;
     }
 
     private function checkAlreadyExists(ObservationRepository $repo, Observation $observation) {
