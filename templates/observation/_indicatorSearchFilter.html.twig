@@ -1,0 +1,17 @@
+{{ form_start(searchForm) }}
+    <div class="row d-flex align-items-center" {{ stimulus_controller('indicator-filter',{
+        locale: app.request.locale,
+    })}}>
+        <div class="col-2">
+            {{ form_label(searchForm.requiredRoles) }}
+            {{ form_widget(searchForm.requiredRoles,{
+                'attr': {
+                    'data-indicator-filter-target': 'requiredRolesSelect',
+                } 
+            }) }}
+        </div>
+        <div class="col-2">
+            <button class="btn btn-primary" type="submit">{{ 'btn.search' | trans }}</button>
+        </div>
+    </div>
+{{ form_end(searchForm) }}
