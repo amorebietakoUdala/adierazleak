@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Indicator;
 use App\Entity\Observation;
+use App\Form\IndicatorSearchType;
 use App\Form\ObservationType;
 use App\Repository\IndicatorRepository;
 use App\Repository\ObservationRepository;
@@ -170,23 +171,34 @@ class ObservationController extends AbstractController
     {
         $ajax = $request->get('ajax') !== null ? $request->get('ajax') : "false";
         $roles = $this->getUser() !== null ? $this->getUser()->getRoles(): [];
-        $indicators = $this->findIndicatorsForRoles($indicatorRepository, $roles);
+        $observation = new Observation();
+        $searchForm = $this->createForm(IndicatorSearchType::class, [], [
+            'allowedRoles' => $this->getParameter('allowedRoles'),
+        ]);
+        $searchForm->handleRequest($request);
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $data = $searchForm->getData();
+            $requiredRoles = count($data['requiredRoles']) > 0 ? $data['requiredRoles'] : null;
+            $indicators = $this->findIndicatorsForRoles($indicatorRepository, $requiredRoles );    
+        } else {
+            $indicators = $this->findIndicatorsForRoles($indicatorRepository, $roles);
+        }
+
         $lastObservations = [];
         foreach ($indicators as $indicator) {
             $lastObservations[] = $observationRepository->findLastObservationForIndicator($indicator);
         }
+        $form = $this->createForm(ObservationType::class, $observation, [
+            'readonly' => false,
+            'allowedRoles' => $this->getParameter('allowedRoles'),
+            'isAdmin' => $this->isGranted("ROLE_ADMIN"),
+        ]);
         if ($ajax === "false") {
-            $observation = new Observation();
-            $form = $this->createForm(ObservationType::class, $observation, [
-                'readonly' => false,
-                'allowedRoles' => $this->getParameter('allowedRoles'),
-                'isAdmin' => $this->isGranted("ROLE_ADMIN"),
-            ]);
-
             return $this->render('observation/myObservation_index.html.twig', [
                 'indicators' => $indicators,
                 'observations' => $lastObservations,
                 'form' => $form->createView(),
+                'searchForm' => $searchForm->createView(),
             ]);
         } else {
             return $this->render('observation/_myObservation_list.html.twig', [
@@ -196,11 +208,11 @@ class ObservationController extends AbstractController
         }
     }
 
-    private function findIndicatorsForRoles(IndicatorRepository $indicatorRepository, $roles) {
-        if ($this->isGranted('ROLE_ADMIN')) {
-            $indicators = $indicatorRepository->findAll();
+    private function findIndicatorsForRoles(IndicatorRepository $indicatorRepository, $roles = null) {
+        if (null !== $roles) {
+            $indicators = $indicatorRepository->findByRoles($roles);
         } else {
-            $indicators = $indicatorRepository->findByRoles($roles);    
+            $indicators = $indicatorRepository->findAll();
         }
         return $indicators;
     }
