@@ -18,7 +18,7 @@
                         data-toggle="top"
                         title="{{ observation.notes }}"
                      {% endif %}>
-                     {{ observation.value }} ({{ observation.year~'/'~ ( observation.month < 10 ? '0'~observation.month : observation.month) }})&nbsp; 
+                     {{ observation.value | number_format(2,',','.') }} ({{ observation.year~'/'~ ( observation.month < 10 ? '0'~observation.month : observation.month) }})&nbsp; 
                      <a href="#" 
                         data-action="entity#edit" 
                         data-url="{{ path('observation_edit', {'id': observation.id}) }}" 

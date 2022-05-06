@@ -17,7 +17,7 @@
                   <td>{{ observation.year }}</td>
                   <td>{{ observation.month }}</td>
                   <td>{{ (app.request.locale == 'es') ? observation.indicator.descriptionEs : observation.indicator.descriptionEu }}</td>
-                  <td>{{ observation.value }}</td>
+                  <td>{{ observation.value | number_format(2,'.',',') }}</td>
                   <td>{{ observation.notes }}</td>
                   <td>
                      <a href="#" data-action="entity#edit" data-url="{{ path('observation_show', {'id': observation.id}) }}"><i class="fa fa-eye" title='{{ "btn.show" | trans | capitalize }}'></i></a>&nbsp;
