@@ -163,7 +163,6 @@ class ObservationController extends AbstractController
         ], new Response(null, $form->isSubmitted() && !$form->isValid() ? 422 : 200,));
     }
 
-
     /**
      * @Route("/", name="myObservation_index")
      */
