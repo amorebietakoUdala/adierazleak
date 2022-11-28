@@ -7,9 +7,9 @@ import {
     Modal
 } from 'bootstrap';
 
-import {
-    useDispatch
-} from 'stimulus-use';
+// import {
+//     useDispatch
+// } from 'stimulus-use';
 
 export default class extends Controller {
     static targets = ['modal', 'modalTitle', 'modalBody', 'modalSaveButton'];
@@ -20,7 +20,6 @@ export default class extends Controller {
     modal = null;
 
     connect() {
-        useDispatch(this);
         this.dispatch('init');
     }
 
