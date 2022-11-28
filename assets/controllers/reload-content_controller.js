@@ -20,6 +20,10 @@ export default class extends Controller {
         $('#taula').bootstrapTable({
             cache: false,
             showExport: true,
+            iconsPrefix: 'fa',
+            icons: {
+                export: 'fa-download',
+            },
             exportTypes: ['excel'],
             exportDataType: 'all',
             exportOptions: {
@@ -37,5 +41,15 @@ export default class extends Controller {
             locale: this.localeValue + '-' + this.localeValue.toUpperCase(),
         });
         target.style.opacity = 1;
+
+        //let $div = $('div.bootstrap-table.bootstrap5').removeClass('bootstrap5').addClass('bootstrap4');
+        // To fix an issue with columns toggle list
+        // $('btn btn-secondary dropdown-toggle').data( "toggle", "dropdown" );        
+        // $('.page-list').find('button').attr('data-bs-toggle','dropdown');
+        var $table = $(this.element);
+        if ( this.pageValue !== null && $table.bootstrapTable("getOptions").totalPages >= this.pageValue ) {
+            console.log(this.pageValue);
+            $table.bootstrapTable('selectPage', this.pageValue);
+        }        
     }
 }

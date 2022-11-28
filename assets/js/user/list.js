@@ -9,6 +9,10 @@ $(function(){
 	$('#taula').bootstrapTable({
 		cache : false,
 		showExport: true,
+		iconsPrefix: 'fa',
+		icons: {
+			 export: 'fa-download',
+		},
 		exportTypes: ['excel'],
 		exportDataType: 'all',
 		exportOptions: {

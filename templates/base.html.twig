@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
       <link rel="shortcut icon" href="{{ asset('build/images/favicon.ico') }}">      
 		<title>
-			{% block title %}Welcome!{% endblock %}
+			{% block title %}{{ 'messages.appTitle' | trans }}{% endblock %}
 		</title>
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}

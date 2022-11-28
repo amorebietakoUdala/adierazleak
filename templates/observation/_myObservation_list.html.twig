@@ -14,8 +14,8 @@
                <td>
                   <span
                      {% if observation.notes is defined %}  
-                        data-toggle="tooltip" 
-                        data-toggle="top"
+                        data-bs-toggle="tooltip" 
+                        data-bs-toggle="top"
                         title="{{ observation.notes }}"
                      {% endif %}>
                      {{ observation.value | number_format(2,',','.') }} ({{ observation.year~'/'~ ( observation.month < 10 ? '0'~observation.month : observation.month) }})&nbsp; 
@@ -31,10 +31,10 @@
                <td>{{ 'label.noValueDefined' | trans }}</td>
             {% endif %}
             <td>
-               <a href="#" data-action="click->entity#openModal" data-indicatorId="{{ indicators[loop.index0].id }}">
+               <a class="text-decoration-none" href="#" data-action="click->entity#openModal" data-indicatorId="{{ indicators[loop.index0].id }}">
                   <i class="fa fa-plus" title='{{ "btn.new" | trans | capitalize }}'></i>&nbsp;
                </a>
-               <a href="{{ path('observation_search', {'indicator': indicators[loop.index0].id }) }}">
+               <a class="text-decoration-none" href="{{ path('observation_search', {'indicator': indicators[loop.index0].id }) }}">
                   <i class="fa fa-search" aria-hidden="true"></i>&nbsp;
                </a>
             </td>

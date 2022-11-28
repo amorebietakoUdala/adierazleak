@@ -14,6 +14,8 @@ import './bootstrap';
 import 'bootstrap';
 import 'popper.js';
 
+import '@fortawesome/fontawesome-free/js/all.js';
+
 global.app_base = '/adierazleak';
 
 $(function() {
@@ -23,5 +25,5 @@ $(function() {
         var url = e.currentTarget.dataset.url;
         document.location.href = url;
     });
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-bs-toggle="tooltip"]').tooltip();
 });
