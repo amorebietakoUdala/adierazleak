@@ -1597,11 +1597,8 @@ __metadata:
 
 "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/Resources/assets::locator=root-workspace-0b6124%40workspace%3A.":
   version: 0.1.0
-  resolution: "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/Resources/assets#vendor/symfony/ux-turbo/Resources/assets::hash=d4b3dc&locator=root-workspace-0b6124%40workspace%3A."
-  peerDependencies:
-    "@hotwired/stimulus": ^3.0.0
-    "@hotwired/turbo": ^7.0.1
-  checksum: 4f54067d685fe4a6483a28ba0a00157ae1ede537e9f334a26495a71c28446dfd5a36808408490a4fe216fe2b0bca50f9025819d20a87750280c487e44f40dc60
+  resolution: "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/Resources/assets#vendor/symfony/ux-turbo/Resources/assets::hash=4ceccb&locator=root-workspace-0b6124%40workspace%3A."
+  checksum: dd2c756cf4c8048641f69e10f81254952159c7ecbdeace15799677cae7ea605442485a6128eef7768ce2ff0f8819663050e29a193f59db30175006a942ebcd8c
   languageName: node
   linkType: hard
 
@@ -2858,21 +2855,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:^4.0.0":
-  version: 4.12.0
-  resolution: "browserslist@npm:4.12.0"
-  dependencies:
-    caniuse-lite: ^1.0.30001043
-    electron-to-chromium: ^1.3.413
-    node-releases: ^1.1.53
-    pkg-up: ^2.0.0
-  bin:
-    browserslist: cli.js
-  checksum: 6ad31476c8494b0c1773ef837e26ebd51baec9e554eb2e2e4d77fcd1fd87791e0b45023203c2bc552afcbd4fa459893abc124171720c2aea849066204d1939fa
-  languageName: node
-  linkType: hard
-
-"browserslist@npm:^4.14.5, browserslist@npm:^4.21.3, browserslist@npm:^4.21.4":
+"browserslist@npm:^4.0.0, browserslist@npm:^4.14.5, browserslist@npm:^4.16.6, browserslist@npm:^4.21.3, browserslist@npm:^4.21.4":
   version: 4.21.4
   resolution: "browserslist@npm:4.21.4"
   dependencies:
@@ -2883,21 +2866,6 @@ __metadata:
   bin:
     browserslist: cli.js
   checksum: 4af3793704dbb4615bcd29059ab472344dc7961c8680aa6c4bb84f05340e14038d06a5aead58724eae69455b8fade8b8c69f1638016e87e5578969d74c078b79
-  languageName: node
-  linkType: hard
-
-"browserslist@npm:^4.16.6":
-  version: 4.19.1
-  resolution: "browserslist@npm:4.19.1"
-  dependencies:
-    caniuse-lite: ^1.0.30001286
-    electron-to-chromium: ^1.4.17
-    escalade: ^3.1.1
-    node-releases: ^2.0.1
-    picocolors: ^1.0.0
-  bin:
-    browserslist: cli.js
-  checksum: c0777fd483691638fd6801e16c9d809e1d65f6d2b06db2e806654be51045cbab1452a89841a2c5caea2cbe19d621b4f1d391cffbb24512aa33280039ab345875
   languageName: node
   linkType: hard
 
@@ -2993,17 +2961,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001043":
+"caniuse-lite@npm:^1.0.0":
   version: 1.0.30001066
   resolution: "caniuse-lite@npm:1.0.30001066"
   checksum: 5583bc12ede2e61e385fa3e3e6c879cd0e5f77719244761d6986874b46dd956b74e4a39e1540a0805d2c1daa6e459c8789e5d39860ff6e6a60b2ef966a8d8dc9
-  languageName: node
-  linkType: hard
-
-"caniuse-lite@npm:^1.0.30001286":
-  version: 1.0.30001299
-  resolution: "caniuse-lite@npm:1.0.30001299"
-  checksum: c770f60ebf3e0cc8043ba4db0ebec12d7a595a6b50cb4437c3c5c55b04de9d2413f711f2828be761e8c37bb46b927a8abe6b199b8f0ffc1a34af0ebdee84be27
   languageName: node
   linkType: hard
 
@@ -3855,20 +3816,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron-to-chromium@npm:^1.3.413":
-  version: 1.3.452
-  resolution: "electron-to-chromium@npm:1.3.452"
-  checksum: c1103f2612b457324715d6ab6b879629d73d8eefb457c6c04db78ba96ab210a66ad875663714dde9275c4eb3dbcb301af60b0f8a00be1df25131da486fa68de0
-  languageName: node
-  linkType: hard
-
-"electron-to-chromium@npm:^1.4.17":
-  version: 1.4.44
-  resolution: "electron-to-chromium@npm:1.4.44"
-  checksum: 76b0c723cf4fa3f542e4e34add8c559d5c3668192d1f359d24b45546b34791dff716e9fd905fbcddd6875cb849b72106c6f5edd682bba2f78c1c2eb6bccd647d
-  languageName: node
-  linkType: hard
-
 "electron-to-chromium@npm:^1.4.251":
   version: 1.4.284
   resolution: "electron-to-chromium@npm:1.4.284"
@@ -4431,15 +4378,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-up@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "find-up@npm:2.1.0"
-  dependencies:
-    locate-path: ^2.0.0
-  checksum: 43284fe4da09f89011f08e3c32cd38401e786b19226ea440b75386c1b12a4cb738c94969808d53a84f564ede22f732c8409e3cfc3f7fb5b5c32378ad0bbf28bd
-  languageName: node
-  linkType: hard
-
 "find-up@npm:^3.0.0":
   version: 3.0.0
   resolution: "find-up@npm:3.0.0"
@@ -4543,7 +4481,7 @@ __metadata:
 
 "fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=18f3a7"
   dependencies:
     node-gyp: latest
   conditions: os=darwin
@@ -5444,16 +5382,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"locate-path@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "locate-path@npm:2.0.0"
-  dependencies:
-    p-locate: ^2.0.0
-    path-exists: ^3.0.0
-  checksum: 02d581edbbbb0fa292e28d96b7de36b5b62c2fa8b5a7e82638ebb33afa74284acf022d3b1e9ae10e3ffb7658fbc49163fcd5e76e7d1baaa7801c3e05a81da755
-  languageName: node
-  linkType: hard
-
 "locate-path@npm:^3.0.0":
   version: 3.0.0
   resolution: "locate-path@npm:3.0.0"
@@ -5935,20 +5863,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-releases@npm:^1.1.53":
-  version: 1.1.56
-  resolution: "node-releases@npm:1.1.56"
-  checksum: 77908ea9993b301a294f84c4f5fe8d51fb3bbf50128a090fc90e3e668e577fcd78c3b6d1dab8dc2acf26f7755670486fd0645aaaa77f30f847d81983408c558e
-  languageName: node
-  linkType: hard
-
-"node-releases@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "node-releases@npm:2.0.1"
-  checksum: b20dd8d4bced11f75060f0387e05e76b9dc4a0451f7bb3516eade6f50499ea7768ba95d8a60d520c193402df1e58cb3fe301510cc1c1ad68949c3d57b5149866
-  languageName: node
-  linkType: hard
-
 "node-releases@npm:^2.0.6":
   version: 2.0.6
   resolution: "node-releases@npm:2.0.6"
@@ -6134,30 +6048,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-limit@npm:^1.1.0":
-  version: 1.3.0
-  resolution: "p-limit@npm:1.3.0"
-  dependencies:
-    p-try: ^1.0.0
-  checksum: 281c1c0b8c82e1ac9f81acd72a2e35d402bf572e09721ce5520164e9de07d8274451378a3470707179ad13240535558f4b277f02405ad752e08c7d5b0d54fbfd
-  languageName: node
-  linkType: hard
-
 "p-limit@npm:^2.0.0, p-limit@npm:^2.2.0":
   version: 2.3.0
   resolution: "p-limit@npm:2.3.0"
   dependencies:
     p-try: ^2.0.0
   checksum: 84ff17f1a38126c3314e91ecfe56aecbf36430940e2873dadaa773ffe072dc23b7af8e46d4b6485d302a11673fe94c6b67ca2cfbb60c989848b02100d0594ac1
-  languageName: node
-  linkType: hard
-
-"p-locate@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "p-locate@npm:2.0.0"
-  dependencies:
-    p-limit: ^1.1.0
-  checksum: e2dceb9b49b96d5513d90f715780f6f4972f46987dc32a0e18bc6c3fc74a1a5d73ec5f81b1398af5e58b99ea1ad03fd41e9181c01fa81b4af2833958696e3081
   languageName: node
   linkType: hard
 
@@ -6202,13 +6098,6 @@ __metadata:
     "@types/retry": ^0.12.0
     retry: ^0.13.1
   checksum: e6d540413bb3d0b96e0db44f74a7af1dce41f5005e6e84d617960110b148348c86a3987be07797749e3ddd55817dd3a8ffd6eae3428758bc2994d987e48c3a70
-  languageName: node
-  linkType: hard
-
-"p-try@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "p-try@npm:1.0.0"
-  checksum: 3b5303f77eb7722144154288bfd96f799f8ff3e2b2b39330efe38db5dd359e4fb27012464cd85cb0a76e9b7edd1b443568cb3192c22e7cffc34989df0bafd605
   languageName: node
   linkType: hard
 
@@ -6383,15 +6272,6 @@ __metadata:
   dependencies:
     find-up: ^4.0.0
   checksum: 9863e3f35132bf99ae1636d31ff1e1e3501251d480336edb1c211133c8d58906bed80f154a1d723652df1fda91e01c7442c2eeaf9dc83157c7ae89087e43c8d6
-  languageName: node
-  linkType: hard
-
-"pkg-up@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "pkg-up@npm:2.0.0"
-  dependencies:
-    find-up: ^2.1.0
-  checksum: de4b418175281a082e366ce1a919f032520ee53cf421578b35173f03816f6ec4c19e1552066840bb0988c3e1215859653948efd6ca3507a23f4f44229269500d
   languageName: node
   linkType: hard
 
@@ -7220,14 +7100,14 @@ __metadata:
 
 "resolve@patch:resolve@1.1.7#~builtin<compat/resolve>":
   version: 1.1.7
-  resolution: "resolve@patch:resolve@npm%3A1.1.7#~builtin<compat/resolve>::version=1.1.7&hash=3bafbf"
+  resolution: "resolve@patch:resolve@npm%3A1.1.7#~builtin<compat/resolve>::version=1.1.7&hash=07638b"
   checksum: e9dbca78600ae56835c43a09f1276876c883e4b4bbd43e2683fa140671519d2bdebeb1c1576ca87c8c508ae2987b3ec481645ac5d3054b0f23254cfc1ce49942
   languageName: node
   linkType: hard
 
 "resolve@patch:resolve@^1.1.5#~builtin<compat/resolve>, resolve@patch:resolve@^1.14.2#~builtin<compat/resolve>":
   version: 1.21.0
-  resolution: "resolve@patch:resolve@npm%3A1.21.0#~builtin<compat/resolve>::version=1.21.0&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.21.0#~builtin<compat/resolve>::version=1.21.0&hash=07638b"
   dependencies:
     is-core-module: ^2.8.0
     path-parse: ^1.0.7
@@ -7240,7 +7120,7 @@ __metadata:
 
 "resolve@patch:resolve@^1.9.0#~builtin<compat/resolve>":
   version: 1.22.1
-  resolution: "resolve@patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=07638b"
   dependencies:
     is-core-module: ^2.9.0
     path-parse: ^1.0.7
