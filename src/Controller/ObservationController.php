@@ -173,17 +173,18 @@ class ObservationController extends BaseController
         $ajax = $this->getAjax();
         $roles = $this->getUser() !== null ? $this->getUser()->getRoles(): [];
         $observation = new Observation();
-        $searchForm = $this->createForm(IndicatorSearchType::class, [], [
+        $requiredRoles = $request->get('roles') ? explode(',',$request->get('roles')) : $roles;
+        $searchForm = $this->createForm(IndicatorSearchType::class, [
+            'requiredRoles' => $requiredRoles,
+        ], [
             'allowedRoles' => $this->getParameter('allowedRoles'),
         ]);
         $searchForm->handleRequest($request);
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
             $data = $searchForm->getData();
             $requiredRoles = count($data['requiredRoles']) > 0 ? $data['requiredRoles'] : null;
-            $indicators = $this->findIndicatorsForRoles($indicatorRepository, $requiredRoles );    
-        } else {
-            $indicators = $this->findIndicatorsForRoles($indicatorRepository, $roles);
         }
+        $indicators = $this->findIndicatorsForRoles($indicatorRepository, $requiredRoles );    
 
         $lastObservations = [];
         foreach ($indicators as $indicator) {
@@ -200,6 +201,7 @@ class ObservationController extends BaseController
                 'observations' => $lastObservations,
                 'form' => $form->createView(),
                 'searchForm' => $searchForm->createView(),
+                'requiredRoles' => $requiredRoles,
             ]);
         } else {
             return $this->render('observation/_myObservation_list.html.twig', [
