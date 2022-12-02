@@ -5,15 +5,15 @@
 {% block body %}
     <h3>{{'title.indicatorIndex' | trans }}</h3>
       <div {{ stimulus_controller('reload-content', 
-               { 'url': path('indicator_index', { 'ajax' : 'true'}),
-                  'locale': app.request.locale|split('_')[0] })}} data-action="entity:success->reload-content#refreshContent entity:init->reload-content#refreshContent">
+               { 'url': path('indicator_index'),
+                  'locale': app.request.locale|split('_')[0] })}} data-action="entity:success->reload-content#refreshContent entity:init->reload-content#refreshContent table:pageChange->reload-content#onPageChange table:orderChange->reload-content#onOrderChange">
 
          <div {{ stimulus_controller('entity', 
                   { 'locale': app.request.locale|split('_')[0], 
                   'entitySaveUrl': path('indicator_save'),
                   })}} 
                class="container-fluid">
-               <div data-reload-content-target="content">
+               <div id="content" data-reload-content-target="content">
                   {{ include('indicator/_list.html.twig', { 'indicators': indicators }) }}
                </div>
             {{ include('common/_modal.html.twig', {

@@ -1,10 +1,16 @@
-      <table id="taula" class="table">
+      <table id="taula" class="table" {{ stimulus_controller('table', {
+   'exportName': 'contracts',
+   'pageSize' : pageSize,
+   'page': page,
+   'sortName': sortName,
+   'sortOrder': sortOrder,
+}) }}>
          <thead>
                <tr>
-                  <th>Id</th>
-                  <th>{{ 'indicator.descriptionEs' | trans }}</th>
-                  <th>{{ 'indicator.descriptionEu' | trans }}</th>
-                  <th>{{ 'indicator.requiredRoles' | trans }}</th>
+                  <th data-sortable="true">Id</th>
+                  <th data-sortable="true">{{ 'indicator.descriptionEs' | trans }}</th>
+                  <th data-sortable="true">{{ 'indicator.descriptionEu' | trans }}</th>
+                  <th data-sortable="true">{{ 'indicator.requiredRoles' | trans }}</th>
                   <th>{{ 'label.options' | trans }}</th>
                </tr>
          </thead>
