@@ -11,6 +11,7 @@ export default class extends Controller {
 
    connect() {
       $(this.requiredRolesSelectTarget).select2({
+         language: this.localeValue,
          placeholder: "",
       });
    }

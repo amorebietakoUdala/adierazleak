@@ -9,7 +9,6 @@ use App\Form\ObservationType;
 use App\Repository\IndicatorRepository;
 use App\Repository\ObservationRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,16 +16,17 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/{_locale}/observation")
  */
-class ObservationController extends AbstractController
+class ObservationController extends BaseController
 {
 
     /**
      * @Route("/search/indicator/{indicator}", name="observation_search")
      */
     public function search(Request $request, ObservationRepository $repo, Indicator $indicator): Response {
-        $ajax = $request->get('ajax') !== null ? $request->get('ajax') : "false";
+        $this->loadQueryParameters($request);
+        $ajax = $this->getAjax();
         $observations = $repo->findByIndicatorOrdered($indicator);
-        if ($ajax === "false") {
+        if (!$ajax) {
             $observation = new Observation();
             $roles = $this->getUser() !== null ? $this->getUser()->getRoles(): [];
             $form = $this->createForm(ObservationType::class, $observation,[
@@ -57,6 +57,7 @@ class ObservationController extends AbstractController
      */
     public function createOrSave(Request $request, ObservationRepository $repo, EntityManagerInterface $entityManager): Response
     {
+        $this->loadQueryParameters($request);
         $observation = new Observation();
         $roles = $this->getUser() !== null ? $this->getUser()->getRoles(): [];
         $form = $this->createForm(ObservationType::class, $observation,[
@@ -168,7 +169,8 @@ class ObservationController extends AbstractController
      */
     public function index(IndicatorRepository $indicatorRepository, ObservationRepository $observationRepository, Request $request): Response
     {
-        $ajax = $request->get('ajax') !== null ? $request->get('ajax') : "false";
+        $this->loadQueryParameters($request);
+        $ajax = $this->getAjax();
         $roles = $this->getUser() !== null ? $this->getUser()->getRoles(): [];
         $observation = new Observation();
         $searchForm = $this->createForm(IndicatorSearchType::class, [], [
@@ -192,7 +194,7 @@ class ObservationController extends AbstractController
             'allowedRoles' => $this->getParameter('allowedRoles'),
             'isAdmin' => $this->isGranted("ROLE_ADMIN"),
         ]);
-        if ($ajax === "false") {
+        if (!$ajax) {
             return $this->render('observation/myObservation_index.html.twig', [
                 'indicators' => $indicators,
                 'observations' => $lastObservations,

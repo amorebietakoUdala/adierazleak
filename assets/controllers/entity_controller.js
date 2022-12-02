@@ -3,13 +3,7 @@ import '../js/common/list.js';
 import $ from 'jquery';
 import { Controller } from '@hotwired/stimulus';
 
-import {
-    Modal
-} from 'bootstrap';
-
-// import {
-//     useDispatch
-// } from 'stimulus-use';
+import { Modal } from 'bootstrap';
 
 export default class extends Controller {
     static targets = ['modal', 'modalTitle', 'modalBody', 'modalSaveButton'];
@@ -50,7 +44,7 @@ export default class extends Controller {
     async edit(event) {
         event.preventDefault();
         let url = event.currentTarget.dataset.url;
-        let allowEdit = event.currentTarget.dataset.allowedit;
+        let allowEdit = event.currentTarget.dataset.allowedit === "true" ? true : false;
         try {
             await $.ajax({
                 url: url,
@@ -58,7 +52,7 @@ export default class extends Controller {
             }).then((response) => {
                 this.modal = new Modal(this.modalTarget);
                 this.modalBodyTarget.innerHTML = response;
-                if (allowEdit == "false") {
+                if (!allowEdit) {
                     $(this.modalSaveButtonTarget).hide();
                 } else {
                     $(this.modalSaveButtonTarget).show(); 

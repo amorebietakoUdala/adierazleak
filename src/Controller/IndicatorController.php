@@ -6,7 +6,6 @@ use App\Entity\Indicator;
 use App\Form\IndicatorType;
 use App\Repository\IndicatorRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/{_locale}/admin/indicator")
  */
-class IndicatorController extends AbstractController
+class IndicatorController extends BaseController
 {
     /**
      * Creates or updates a indicator
@@ -23,6 +22,7 @@ class IndicatorController extends AbstractController
      */
     public function createOrSave(Request $request, IndicatorRepository $repo, EntityManagerInterface $entityManager): Response
     {
+        $this->loadQueryParameters($request);
         $indicator = new Indicator();
         $form = $this->createForm(IndicatorType::class, $indicator,[
             'readonly' => false,
@@ -125,6 +125,7 @@ class IndicatorController extends AbstractController
      */
     public function index(IndicatorRepository $indicatorRepository, Request $request): Response
     {
+        $this->loadQueryParameters($request);
         $ajax = $request->get('ajax') !== null ? $request->get('ajax') : "false";
         if ($ajax === "false") {
             $indicator = new Indicator();

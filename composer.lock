@@ -4,34 +4,35 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "653e352abd1929162c328868d5f3631e",
+    "content-hash": "4c3827d2f47fad63257f9034de3529c2",
     "packages": [
         {
             "name": "amorebietakoudala/user-bundle",
-            "version": "1.2.3",
+            "version": "1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amorebietakoUdala/user-bundle.git",
-                "reference": "1cd74b940fb3f558137f7cf7cc68d6e1a76667f7"
+                "reference": "e05b36d6c93fe066921b8c076eb3ab7be48a0d1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amorebietakoUdala/user-bundle/zipball/1cd74b940fb3f558137f7cf7cc68d6e1a76667f7",
-                "reference": "1cd74b940fb3f558137f7cf7cc68d6e1a76667f7",
+                "url": "https://api.github.com/repos/amorebietakoUdala/user-bundle/zipball/e05b36d6c93fe066921b8c076eb3ab7be48a0d1d",
+                "reference": "e05b36d6c93fe066921b8c076eb3ab7be48a0d1d",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "^2.1",
                 "php": "^7.2.5",
-                "symfony/form": "^5.3",
-                "symfony/framework-bundle": "^5.3",
-                "symfony/ldap": "^5.3",
-                "symfony/security-bundle": "^5.3"
+                "symfony/form": "^5.4",
+                "symfony/framework-bundle": "^5.4",
+                "symfony/ldap": "^5.4",
+                "symfony/security-bundle": "^5.4",
+                "twig/twig": "^3.4"
             },
             "require-dev": {
-                "symfony/browser-kit": "^5.3",
-                "symfony/css-selector": "^5.3",
-                "symfony/phpunit-bridge": "^5.3"
+                "symfony/browser-kit": "^5.4",
+                "symfony/css-selector": "^5.4",
+                "symfony/phpunit-bridge": "^5.4"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -49,9 +50,9 @@
             "description": "AmorebietakoUdala erabiltzaile bundlela",
             "support": {
                 "issues": "https://github.com/amorebietakoUdala/user-bundle/issues",
-                "source": "https://github.com/amorebietakoUdala/user-bundle/tree/1.2.3"
+                "source": "https://github.com/amorebietakoUdala/user-bundle/tree/1.4"
             },
-            "time": "2022-03-08T10:49:38+00:00"
+            "time": "2022-12-02T11:34:53+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",

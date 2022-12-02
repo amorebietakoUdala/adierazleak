@@ -67,6 +67,10 @@ tbody {
     z-index: 100;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 @media (max-width: 767px) {
     .logo {
         height: 50px;

@@ -1,8 +1,14 @@
-<table id="taula" class="table">
+<table id="taula" class="table" {{ stimulus_controller('table', {
+   'exportName': 'contracts',
+   'pageSize' : pageSize,
+   'page': page,
+   'sortName': sortName,
+   'sortOrder': sortOrder,
+}) }}>
    <thead>
          <tr>
-            <th>{{ 'label.indicator' | trans }}</th>
-            <th>{{ 'label.lastValue' | trans }}</th>
+            <th data-sortable="true">{{ 'label.indicator' | trans }}</th>
+            <th data-sortable="true" data-sorter="lastValueSorter">{{ 'label.lastValue' | trans }}</th>
             <th>{{ 'label.options' | trans }}</th>
          </tr>
    </thead>
@@ -34,7 +40,12 @@
                <a class="text-decoration-none" href="#" data-action="click->entity#openModal" data-indicatorId="{{ indicators[loop.index0].id }}">
                   <i class="fa fa-plus" title='{{ "btn.new" | trans | capitalize }}'></i>&nbsp;
                </a>
-               <a class="text-decoration-none" href="{{ path('observation_search', {'indicator': indicators[loop.index0].id }) }}">
+               <a class="text-decoration-none" 
+                  href="{{ path('observation_search', {'indicator': indicators[loop.index0].id }) }}"
+                  {# data-url="{{ absolute_url(path(app.request.attributes.get('_route'))) }}"  #}
+                  data-action="click->table#onClick" 
+                  data-return-url="{{ absolute_url(path(app.request.attributes.get('_route'))) }}" 
+                  data-pagination="false">
                   <i class="fa fa-search" aria-hidden="true"></i>&nbsp;
                </a>
             </td>

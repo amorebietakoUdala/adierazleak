@@ -2,9 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "..\\..\\bundles\\user-bundle"
 		}
 	],
 	"settings": {}
