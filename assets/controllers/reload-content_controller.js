@@ -7,6 +7,7 @@ export default class extends Controller {
     static values = {
         url: String,
         locale: String,
+        filters: Array,
     }
 
     page = null;
@@ -21,6 +22,9 @@ export default class extends Controller {
         if ( this.sortName != null && this.sortOrder != null ) {
             this.params.set('sortName', this.sortName);
             this.params.set('sortOrder', this.sortOrder);
+        }
+        if (this.filtersValue) {
+            this.params.set('roles',this.filtersValue.join(','));
         }
 
         const target = this.hasContentTarget ? this.contentTarget : this.element;

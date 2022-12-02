@@ -10,14 +10,17 @@
 	{% endif %}
 	<div {{ stimulus_controller('reload-content', 
 				{ 'url': path('myObservation_index'),
-					'locale': app.request.locale|split('_')[0] })}} data-action="entity:success->reload-content#refreshContent entity:init->reload-content#refreshContent table:pageChange->reload-content#onPageChange table:orderChange->reload-content#onOrderChange">
+				  'locale': app.request.locale|split('_')[0],
+				  'filters': requiredRoles,
+		   })}} 
+			data-action="entity:success->reload-content#refreshContent entity:init->reload-content#refreshContent table:pageChange->reload-content#onPageChange table:orderChange->reload-content#onOrderChange">
 
 		<div {{ stimulus_controller('entity', 
 					{ 'locale': app.request.locale|split('_')[0], 
 					'entitySaveUrl': path('observation_save'),
 					})}} 
 				class="container-fluid">
-				<div data-reload-content-target="content">
+				<div id="content" data-reload-content-target="content">
 					{{ include('observation/_myObservation_list.html.twig', { 'indicators': indicators, 'observations': observations }) }}
 				</div>
 					{{ include('common/_modal.html.twig', {
