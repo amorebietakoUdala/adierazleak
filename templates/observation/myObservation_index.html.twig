@@ -11,7 +11,7 @@
 	<div {{ stimulus_controller('reload-content', 
 				{ 'url': path('myObservation_index'),
 				  'locale': app.request.locale|split('_')[0],
-				  'filters': requiredRoles,
+				  'roles': requiredRoles,
 		   })}} 
 			data-action="entity:success->reload-content#refreshContent entity:init->reload-content#refreshContent table:pageChange->reload-content#onPageChange table:orderChange->reload-content#onOrderChange">
 

@@ -25,6 +25,8 @@ class ObservationController extends BaseController
     public function search(Request $request, ObservationRepository $repo, Indicator $indicator): Response {
         $this->loadQueryParameters($request);
         $ajax = $this->getAjax();
+        $roles = $this->getUser() !== null ? $this->getUser()->getRoles(): [];
+        $requiredRoles = $request->get('roles') ? explode(',',$request->get('roles')) : $roles;
         $observations = $repo->findByIndicatorOrdered($indicator);
         if (!$ajax) {
             $observation = new Observation();
@@ -40,11 +42,13 @@ class ObservationController extends BaseController
                 'observations' => $observations,
                 'indicator' => $indicator,
                 'form' => $form->createView(),
+                'requiredRoles' => $roles,
             ]);
     
         } else {
             return $this->render('observation/_list.html.twig', [
                 'observations' => $observations,
+                'requiredRoles' => $roles,
             ]);
         }
 
@@ -207,6 +211,7 @@ class ObservationController extends BaseController
             return $this->render('observation/_myObservation_list.html.twig', [
                 'indicators' => $indicators,
                 'observations' => $lastObservations,
+                'requiredRoles' => $requiredRoles,
             ]);
         }
     }

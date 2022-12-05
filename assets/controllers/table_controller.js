@@ -11,7 +11,8 @@ export default class extends Controller {
         page: Number,
         sortName: String,
         sortOrder: String,
-        }
+        roles: Array,
+    }
     params = new URLSearchParams();
 
     connect() {
@@ -90,13 +91,20 @@ export default class extends Controller {
             this.params.delete('pageSize');
             this.params.delete('sortName');
             this.params.delete('sortOrder');
+            this.params.delete('roles');
         }
     }
 
     createReturnUrlParameter(event) {
-        let returnUrl = event.currentTarget.dataset.returnUrl;
+        let returnUrl = new URL(event.currentTarget.dataset.returnUrl);
+        const urlParams = new URLSearchParams(returnUrl.search);
         if (returnUrl != null) {
-            returnUrl = returnUrl + '?' + this.params.toString();
+            this.params.set('roles',this.rolesValue.join(','));
+            let entries = this.params.entries();
+            for (let [key, value] of entries) {
+                urlParams.append(key, value);
+            }
+            returnUrl = `${returnUrl.origin}${returnUrl.pathname}?`+urlParams.toString();
             this.params.set('returnUrl', returnUrl);
         }
     }

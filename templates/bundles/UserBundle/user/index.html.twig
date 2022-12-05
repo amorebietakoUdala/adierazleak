@@ -14,7 +14,7 @@
 					'locale': app.request.locale|split('_')[0] })}}
 				 data-action="table:pageChange->reload-content#onPageChange table:orderChange->reload-content#onOrderChange table:pageChange->user-list#onPageChange table:orderChange->user-list#onOrderChange">
 			{% if users is defined and users|length > 0 %}
-				<div data-reload-content-target="content">
+				<div id="content" data-reload-content-target="content">
 					{{ include('@User/user/_list.html.twig', 
 						{
 							'exportName': 'users',

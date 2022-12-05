@@ -4,6 +4,7 @@
    'page': page,
    'sortName': sortName,
    'sortOrder': sortOrder,
+   'roles': requiredRoles,
 }) }}>
    <thead>
          <tr>
@@ -44,7 +45,7 @@
                   href="{{ path('observation_search', {'indicator': indicators[loop.index0].id }) }}"
                   {# data-url="{{ absolute_url(path(app.request.attributes.get('_route'))) }}"  #}
                   data-action="click->table#onClick" 
-                  data-return-url="{{ absolute_url(path(app.request.attributes.get('_route'))) }}" 
+                  data-return-url="{{ absolute_url(path(app.request.attributes.get('_route'), {'roles': requiredRoles is defined ? requiredRoles | join(','): ''})) }}" 
                   data-pagination="false">
                   <i class="fa fa-search" aria-hidden="true"></i>&nbsp;
                </a>
