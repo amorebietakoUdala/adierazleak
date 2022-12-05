@@ -99,7 +99,9 @@ export default class extends Controller {
         let returnUrl = new URL(event.currentTarget.dataset.returnUrl);
         const urlParams = new URLSearchParams(returnUrl.search);
         if (returnUrl != null) {
-            this.params.set('roles',this.rolesValue.join(','));
+            if ( this.hasRolesValue() ) {
+                this.params.set('roles',this.rolesValue.join(','));
+            }
             let entries = this.params.entries();
             for (let [key, value] of entries) {
                 urlParams.append(key, value);
