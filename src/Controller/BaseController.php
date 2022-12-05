@@ -12,7 +12,9 @@ class BaseController extends AbstractController
     protected array $queryParams = []; 
 
     protected function loadQueryParameters(Request $request) {
-        $this->queryParams = $request->query->all();
+        if ($request->getMethod() === Request::METHOD_GET || $request->getMethod() === Request::METHOD_DELETE ) {
+            $this->queryParams = $request->query->all();
+        }
     }
 
     protected function getPaginationParameters() : array {

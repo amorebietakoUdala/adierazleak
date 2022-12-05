@@ -85,6 +85,9 @@ export default class extends Controller {
         this.params.set('pageSize', pageSize);
         this.params.set('sortName', sortName);
         this.params.set('sortOrder', sortOrder);
+        if ( this.hasRolesValue ) {
+            this.params.set('roles',this.rolesValue.join(','));
+        }
         this.createReturnUrlParameter(event);
         if (event.currentTarget.dataset.pagination == "false") {
             this.params.delete('page');
@@ -99,9 +102,6 @@ export default class extends Controller {
         let returnUrl = new URL(event.currentTarget.dataset.returnUrl);
         const urlParams = new URLSearchParams(returnUrl.search);
         if (returnUrl != null) {
-            if ( this.hasRolesValue() ) {
-                this.params.set('roles',this.rolesValue.join(','));
-            }
             let entries = this.params.entries();
             for (let [key, value] of entries) {
                 urlParams.append(key, value);
