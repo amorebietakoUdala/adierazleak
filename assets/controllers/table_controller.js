@@ -36,7 +36,7 @@ export default class extends Controller {
             sortStable: true,
             pageList: [10, 25, 50, 100],
             sortable: true,
-            locale: global.locale + '-' + global.locale.toUpperCase(),
+            locale: $('html').attr('lang') + '-' + $('html').attr('lang').toUpperCase(),
         };
     }
 
