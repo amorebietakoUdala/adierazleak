@@ -1,40 +1,52 @@
-<table id="taula" class="table" {{ stimulus_controller('table', {
-   'exportName': 'contracts',
-   'pageSize' : pageSize,
-   'page': page,
-   'sortName': sortName,
-   'sortOrder': sortOrder,
-}) }}>
-   <thead>
-         <tr>
-            <th data-sortable="true">Id</th>
-            <th data-sortable="true">{{ 'label.year' | trans }}</th>
-            <th data-sortable="true" >{{ 'label.month' | trans }}</th>
-            <th data-sortable="true">{{ 'label.indicator' | trans }}</th>
-            <th data-sortable="true">{{ 'label.value' | trans }}</th>
-            <th data-sortable="true">{{ 'label.notes' | trans }}</th>
-            <th>{{ 'label.options' | trans }}</th>
-         </tr>
-   </thead>
-   <tbody>
-   {% for observation in observations %}
-         <tr>
-            <td>{{ observation.id }}</td>
-            <td>{{ observation.year }}</td>
-            <td>{{ observation.month }}</td>
-            <td>{{ (app.request.locale == 'es') ? observation.indicator.descriptionEs : observation.indicator.descriptionEu }}</td>
-            <td>{{ observation.value | number_format(2,'.',',') }}</td>
-            <td>{{ observation.notes }}</td>
-            <td>
-               <a href="#" data-action="entity#edit" data-url="{{ path('observation_show', {'id': observation.id}) }}"><i class="fa fa-eye" title='{{ "btn.show" | trans | capitalize }}'></i></a>&nbsp;
-               <a href="#" data-action="entity#edit" data-url="{{ path('observation_edit', {'id': observation.id}) }}" data-allowEdit="true"><i class="fa fa-edit" title='{{ "btn.edit" | trans | capitalize }}'></i></a>&nbsp;
-               <a href="#" data-action="entity#delete" data-url="{{ path('observation_delete', {'id': observation.id}) }}" data-token="{{ csrf_token('delete' ~ observation.id) }}"><i class="fa fa-trash" title='{{ "btn.delete" | trans | capitalize }}'></i></a>&nbsp;
-            </td>
-         </tr>
-   {% else %}
-         <tr>
-            <td colspan="4">no records found</td>
-         </tr>
-   {% endfor %}
-   </tbody>
-</table>
+<div  {{ stimulus_controller('entity', {
+   		'entitySaveUrl': path('observation_save'),
+		})}}>
+   <table id="taula" class="table"
+      data-table-target="table" 
+      data-page-number="{{ page }}" 
+      data-page-size="{{ pageSize }}"
+      data-page-sortName="{{ sortName }}"
+      data-page-sortOrder="{{ sortOrder }}"
+   >
+      <thead>
+            <tr>
+               <th data-sortable="true">Id</th>
+               <th data-sortable="true">{{ 'label.year' | trans }}</th>
+               <th data-sortable="true" >{{ 'label.month' | trans }}</th>
+               <th data-sortable="true">{{ 'label.indicator' | trans }}</th>
+               <th data-sortable="true">{{ 'label.value' | trans }}</th>
+               <th data-sortable="true">{{ 'label.notes' | trans }}</th>
+               <th>{{ 'label.options' | trans }}</th>
+            </tr>
+      </thead>
+      <tbody>
+      {% for observation in observations %}
+            <tr>
+               <td>{{ observation.id }}</td>
+               <td>{{ observation.year }}</td>
+               <td>{{ observation.month }}</td>
+               <td>{{ (app.request.locale == 'es') ? observation.indicator.descriptionEs : observation.indicator.descriptionEu }}</td>
+               <td>{{ observation.value | number_format(2,'.',',') }}</td>
+               <td>{{ observation.notes }}</td>
+               <td>
+                  <a href="#" data-action="entity#edit" data-url="{{ path('observation_show', {'id': observation.id}) }}"><i class="fa fa-eye" title='{{ "btn.show" | trans | capitalize }}'></i></a>&nbsp;
+                  <a href="#" data-action="entity#edit" data-url="{{ path('observation_edit', {'id': observation.id}) }}" data-allowEdit="true"><i class="fa fa-edit" title='{{ "btn.edit" | trans | capitalize }}'></i></a>&nbsp;
+                  <a href="#" data-action="entity#delete" data-url="{{ path('observation_delete', {'id': observation.id}) }}" data-token="{{ csrf_token('delete' ~ observation.id) }}"><i class="fa fa-trash" title='{{ "btn.delete" | trans | capitalize }}'></i></a>&nbsp;
+               </td>
+            </tr>
+      {% else %}
+            <tr>
+               <td colspan="4">no records found</td>
+            </tr>
+      {% endfor %}
+      </tbody>
+   </table>
+   {{ include('common/_modal.html.twig', {
+      'form': form,
+      'modalTitle': 'modal.title.observation' | trans,
+      'formTemplate': 'observation/_form.html.twig'
+      }) 
+   }}
+   {{ include('common/_alert.html.twig') }}
+   <div><button class="btn btn-primary rounded-circle fixed-bottom-right z-index-100" data-action="click->entity#new" data-indicatorId="{{ indicator.id }}"><i class="fa fa-plus" title='{{ "btn.new" | trans | capitalize }}'></i></button></div>
+</div>

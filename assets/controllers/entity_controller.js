@@ -8,16 +8,11 @@ import { Modal } from 'bootstrap';
 export default class extends Controller {
     static targets = ['modal', 'modalTitle', 'modalBody', 'modalSaveButton'];
     static values = {
-        locale: String,
         entitySaveUrl: String
     };
     modal = null;
 
-    connect() {
-        this.dispatch('init');
-    }
-
-    async openModal(event) {
+    async new(event) {
         let indicatorId = event.currentTarget.dataset.indicatorid;
         this.modalBodyTarget.innerHTML = 'Loading...';
         this.modal = new Modal(this.modalTarget);

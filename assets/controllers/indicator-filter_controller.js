@@ -5,13 +5,10 @@ import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
    static targets = ['requiredRolesSelect'];
-   static values = {
-       locale: String,
-   };
 
    connect() {
       $(this.requiredRolesSelectTarget).select2({
-         language: this.localeValue,
+         language: global.locale,
          placeholder: "",
       });
    }

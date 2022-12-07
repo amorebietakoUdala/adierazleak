@@ -126,19 +126,13 @@ class IndicatorController extends BaseController
     public function index(IndicatorRepository $indicatorRepository, Request $request): Response
     {
         $this->loadQueryParameters($request);
-        $ajax = $request->get('ajax') !== null ? $request->get('ajax') : "false";
-        if ($ajax === "false") {
-            $indicator = new Indicator();
-            $form = $this->createForm(IndicatorType::class, $indicator);
-            return $this->render('indicator/index.html.twig', [
-                'indicators' => $indicatorRepository->findAll(),
-                'form' => $form->createView(),
-            ]);
-        } else {
-            return $this->render('indicator/_list.html.twig', [
-                'indicators' => $indicatorRepository->findAll(),
-            ]);
-        }
+        $ajax = $this->getAjax();
+        $indicator = new Indicator();
+        $form = $this->createForm(IndicatorType::class, $indicator);
+        $template = !$ajax ? 'indicator/index.html.twig' : 'indicator/_list.html.twig';
+        return $this->render($template, [
+            'indicators' => $indicatorRepository->findAll(),
+            'form' => $form->createView(),
+        ]);
     }
-
 }

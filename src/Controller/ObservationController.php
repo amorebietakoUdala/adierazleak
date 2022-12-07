@@ -26,27 +26,20 @@ class ObservationController extends BaseController
         $this->loadQueryParameters($request);
         $ajax = $this->getAjax();
         $observations = $repo->findByIndicatorOrdered($indicator);
-        if (!$ajax) {
-            $observation = new Observation();
-            $roles = $this->getUser() !== null ? $this->getUser()->getRoles(): [];
-            $form = $this->createForm(ObservationType::class, $observation,[
-                'readonly' => false,
-                'locale' => $request->getLocale(),
-                'allowedRoles' => $roles,
-                'isAdmin' => $this->isGranted("ROLE_ADMIN"),
-            ]);
-    
-            return $this->render('observation/search.html.twig', [
-                'observations' => $observations,
-                'indicator' => $indicator,
-                'form' => $form->createView(),
-            ]);
-    
-        } else {
-            return $this->render('observation/_list.html.twig', [
-                'observations' => $observations,
-            ]);
-        }
+        $roles = $this->getUser() !== null ? $this->getUser()->getRoles(): [];
+        $observation = new Observation();
+        $form = $this->createForm(ObservationType::class, $observation,[
+            'readonly' => false,
+            'locale' => $request->getLocale(),
+            'allowedRoles' => $roles,
+            'isAdmin' => $this->isGranted("ROLE_ADMIN"),
+        ]);
+        $template = $ajax ? 'observation/_list.html.twig' : 'observation/search.html.twig';
+        return $this->render($template, [
+            'observations' => $observations,
+            'indicator' => $indicator,
+            'form' => $form->createView(),
+        ]);
 
     }
 
@@ -195,21 +188,16 @@ class ObservationController extends BaseController
             'allowedRoles' => $this->getParameter('allowedRoles'),
             'isAdmin' => $this->isGranted("ROLE_ADMIN"),
         ]);
-        if (!$ajax) {
-            return $this->render('observation/myObservation_index.html.twig', [
-                'indicators' => $indicators,
-                'observations' => $lastObservations,
-                'form' => $form->createView(),
-                'searchForm' => $searchForm->createView(),
-                'requiredRoles' => $requiredRoles,
-            ]);
-        } else {
-            return $this->render('observation/_myObservation_list.html.twig', [
-                'indicators' => $indicators,
-                'observations' => $lastObservations,
-                'requiredRoles' => $requiredRoles,
-            ]);
-        }
+        $template = !$ajax ? 'observation/myObservation_index.html.twig' : 'observation/_myObservation_list.html.twig';
+        return $this->render($template, [
+            'indicators' => $indicators,
+            'observations' => $lastObservations,
+            'form' => $form->createView(),
+            'searchForm' => $searchForm->createView(),
+            'filters' => [
+                'roles' => $requiredRoles,
+            ],
+        ]);
     }
 
     private function findIndicatorsForRoles(IndicatorRepository $indicatorRepository, $roles = null) {

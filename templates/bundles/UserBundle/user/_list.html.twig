@@ -1,13 +1,11 @@
 {% trans_default_domain 'user_bundle' %}
-<table id="taula" class="table bootstrap-table mt-3" {{ stimulus_controller({
-   'table': {
-      'exportName': 'users',
-      'pageSize' : pageSize is defined ? pageSize : 10,
-      'page': page is defined ? page : 1,
-      'sortName': sortName is defined ? sortName : 0,
-      'sortOrder': sortOrder is defined ? sortOrder : 'asc',
-   }}
-   ) }}>
+<table id="taula" class="table bootstrap-table mt-3"
+   data-table-target="table" 
+   data-page-number="{{ page }}" 
+   data-page-size="{{ pageSize }}"
+   data-page-sortName="{{ sortName }}"
+   data-page-sortOrder="{{ sortOrder }}"
+>
    <thead>
       <tr>
          <th data-sortable="true">{{"user.id" | trans | capitalize}}</th>
@@ -39,8 +37,8 @@
          <td>
          <a href="{{ path ("admin_user_show",{'id': user.id })}}" data-return-url="{{ absolute_url(path(app.request.attributes.get('_route'))) }}" data-action="click->table#onClick"><i class="fa fa-eye"></i></a>
          &nbsp;<a href="{{ path ("admin_user_edit",{'id': user.id })}}" data-return-url="{{ absolute_url(path(app.request.attributes.get('_route'))) }}" data-action="click->table#onClick"><i class="fa fa-edit"></i></a>
-         &nbsp;<a href="{{ path ('admin_user_delete',{'id': user.id })}}" 
-                  data-action="click->table#onDelete">
+         &nbsp;<a href="{{ path ('admin_user_delete',{'id': user.id })}}"
+                  data-action="click->table#onClick" data-confirm="true">
                   <i class="fa fa-trash"></i>
                </a>
          </td>
