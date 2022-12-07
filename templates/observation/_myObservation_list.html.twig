@@ -40,7 +40,16 @@
                   <td>{{ 'label.noValueDefined' | trans }}</td>
                {% endif %}
                <td>
-                  <a class="text-decoration-none" href="#" data-action="click->entity#new" data-indicatorId="{{ indicators[loop.index0].id }}">
+                  <a class="text-decoration-none" href="#" data-action="click->entity#new" 
+                     {% set month = ( "now" | date("m") ) == 12 ? 1 : ( "now" | date("m") ) %}
+                     {% set year = ( "now" | date("m") ) == 12 ? "now" | date("Y") + 1 : date("Y") %}
+                     data-params="{{ { 
+                        'indicator': indicators[loop.index0].id,
+                        'year': year,
+                        'month': month ,
+                        } | json_encode  
+                     }}"
+                     >
                      <i class="fa fa-plus" title='{{ "btn.new" | trans | capitalize }}'></i>&nbsp;
                   </a>
                   <a class="text-decoration-none" 

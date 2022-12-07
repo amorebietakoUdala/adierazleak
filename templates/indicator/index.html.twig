@@ -8,13 +8,11 @@
                'url': path('indicator_index'),
                'locale': app.request.locale|split('_')[0] 
             })}} data-action="entity:success->table#refreshContent">
-            <div id="content" data-table-target="content">
-               {{ include('indicator/_list.html.twig', { 
-                  'form': form, 
-                  'indicators': indicators,
-               }) }}
-            </div>
-         <span><a class="btn btn-primary rounded-circle fixed-bottom-right z-index-100" data-action="click->entity#new"><i class="fa fa-plus" title='{{ "btn.new" | trans | capitalize }}'></i></a></span>
-         {{ include('common/_alert.html.twig') }}
+         <div id="content" data-table-target="content">
+            {{ include('indicator/_list.html.twig', { 
+               'form': form, 
+               'indicators': indicators,
+            }) }}
+         </div>
    </div>
 {% endblock %}

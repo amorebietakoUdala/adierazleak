@@ -13,12 +13,15 @@ export default class extends Controller {
     modal = null;
 
     async new(event) {
-        let indicatorId = event.currentTarget.dataset.indicatorid;
+        // Params to initialize form
+        let params = event.currentTarget.dataset.params ? JSON.parse(event.currentTarget.dataset.params) : [];
         this.modalBodyTarget.innerHTML = 'Loading...';
         this.modal = new Modal(this.modalTarget);
         this.modal.show();
-        this.modalBodyTarget.innerHTML = await $.ajax(this.entitySaveUrlValue);
-        this.initializeForm(indicatorId);
+        this.modalBodyTarget.innerHTML = await $.ajax(this.entitySaveUrlValue,{
+            data: params,
+        });
+        $(this.modalSaveButtonTarget).show(); 
     }
 
     async submitForm(event) {
@@ -82,15 +85,5 @@ export default class extends Controller {
                 }
             });
         });
-    }
-
-    async initializeForm(indicatorId) {
-        if (indicatorId !== null) {
-            $(this.modalBodyTarget).find('#observation_indicator').val(indicatorId);
-        }
-        let currentYear = new Date().getFullYear();
-        $(this.modalBodyTarget).find('#observation_year').val(currentYear);
-        let currentMonth = new Date().getMonth() + 1;
-        $(this.modalBodyTarget).find('#observation_month').val(currentMonth);
     }
 }

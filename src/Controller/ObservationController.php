@@ -8,6 +8,7 @@ use App\Form\IndicatorSearchType;
 use App\Form\ObservationType;
 use App\Repository\IndicatorRepository;
 use App\Repository\ObservationRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,13 +20,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class ObservationController extends BaseController
 {
 
+    private ObservationRepository $repo;
+    private IndicatorRepository $indicatorRepo;
+    private EntityManager $em;
+
+    public function __construct(ObservationRepository $repo, IndicatorRepository $indicatorRepo, EntityManagerInterface $em)
+    {
+        $this->repo = $repo;
+        $this->indicatorRepo = $indicatorRepo;
+        $this->em = $em;
+    }
+
     /**
      * @Route("/search/indicator/{indicator}", name="observation_search")
      */
-    public function search(Request $request, ObservationRepository $repo, Indicator $indicator): Response {
+    public function search(Request $request, Indicator $indicator): Response {
         $this->loadQueryParameters($request);
         $ajax = $this->getAjax();
-        $observations = $repo->findByIndicatorOrdered($indicator);
+        $observations = $this->repo->findByIndicatorOrdered($indicator);
         $roles = $this->getUser() !== null ? $this->getUser()->getRoles(): [];
         $observation = new Observation();
         $form = $this->createForm(ObservationType::class, $observation,[
@@ -48,10 +60,10 @@ class ObservationController extends BaseController
      * 
      * @Route("/new", name="observation_save", methods={"GET","POST"})
      */
-    public function createOrSave(Request $request, ObservationRepository $repo, EntityManagerInterface $entityManager): Response
+    public function createOrSave(Request $request): Response
     {
         $this->loadQueryParameters($request);
-        $observation = new Observation();
+        $observation = $this->createObservation($request);
         $roles = $this->getUser() !== null ? $this->getUser()->getRoles(): [];
         $form = $this->createForm(ObservationType::class, $observation,[
             'readonly' => false,
@@ -65,15 +77,15 @@ class ObservationController extends BaseController
             $data = $form->getData();
             $error = false;
             if (null !== $data->getId()) {
-                $observation = $repo->find($data->getId());
+                $observation = $this->repo->find($data->getId());
                 $observation->fill($data);
-            } elseif ($this->checkAlreadyExists($repo, $observation)) {
+            } elseif ($this->checkAlreadyExists($observation)) {
                 $this->addFlash('error', 'messages.observationAlreadyExist');
                 $error = true;
             }
             if (!$error) {
-                $entityManager->persist($observation);
-                $entityManager->flush();
+                $this->em->persist($observation);
+                $this->em->flush();
                 if ($request->isXmlHttpRequest()) {
                     return new Response(null, 204);
                 }
@@ -93,7 +105,7 @@ class ObservationController extends BaseController
      * 
      * @Route("/{id}/edit", name="observation_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Observation $observation, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Observation $observation): Response
     {
         $form = $this->createForm(ObservationType::class, $observation, [
             'readonly' => false,
@@ -104,8 +116,8 @@ class ObservationController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Observation $observation */
             $observation = $form->getData();
-            $entityManager->persist($observation);
-            $entityManager->flush();
+            $this->em->persist($observation);
+            $this->em->flush();
         }
 
         $template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'edit.html.twig';
@@ -119,11 +131,11 @@ class ObservationController extends BaseController
     /**
      * @Route("/{id}/delete", name="observation_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Observation $id, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Observation $id): Response
     {
         if ($this->isCsrfTokenValid('delete'.$id->getId(), $request->get('_token'))) {
-            $entityManager->remove($id);
-            $entityManager->flush();
+            $this->em->remove($id);
+            $this->em->flush();
             if (!$request->isXmlHttpRequest()) {
                 return $this->redirectToRoute('observation_search', [
                     'indicator' => $id->getIndicator()
@@ -160,7 +172,7 @@ class ObservationController extends BaseController
     /**
      * @Route("/", name="myObservation_index")
      */
-    public function index(IndicatorRepository $indicatorRepository, ObservationRepository $observationRepository, Request $request): Response
+    public function index(Request $request): Response
     {
         $this->loadQueryParameters($request);
         $ajax = $this->getAjax();
@@ -177,11 +189,11 @@ class ObservationController extends BaseController
             $data = $searchForm->getData();
             $requiredRoles = count($data['requiredRoles']) > 0 ? $data['requiredRoles'] : null;
         }
-        $indicators = $this->findIndicatorsForRoles($indicatorRepository, $requiredRoles );    
+        $indicators = $this->findIndicatorsForRoles($requiredRoles);    
 
         $lastObservations = [];
         foreach ($indicators as $indicator) {
-            $lastObservations[] = $observationRepository->findLastObservationForIndicator($indicator);
+            $lastObservations[] = $this->repo->findLastObservationForIndicator($indicator);
         }
         $form = $this->createForm(ObservationType::class, $observation, [
             'readonly' => false,
@@ -200,16 +212,16 @@ class ObservationController extends BaseController
         ]);
     }
 
-    private function findIndicatorsForRoles(IndicatorRepository $indicatorRepository, $roles = null) {
+    private function findIndicatorsForRoles($roles = null) {
         $indicators = [];
         $cleanRoles = null;
         if ( null !== $roles ) {
             $cleanRoles = $this->removeUnnecesaryRoles($roles);
         }
         if ($this->isGranted("ROLE_ADMIN") && count($cleanRoles) === 0 ) {
-            $indicators = $indicatorRepository->findAll();
+            $indicators = $this->indicatorRepo->findAll();
         } elseif (null !== $cleanRoles) {
-            $indicators = $indicatorRepository->findByRoles($cleanRoles);
+            $indicators = $this->indicatorRepo->findByRoles($cleanRoles);
         }
         return $indicators;
     }
@@ -224,9 +236,23 @@ class ObservationController extends BaseController
         return $roles;
     }
 
-    private function checkAlreadyExists(ObservationRepository $repo, Observation $observation) {
-        $result = $repo->findObservationByExample($observation);
+    private function checkAlreadyExists(Observation $observation) {
+        $result = $this->repo->findObservationByExample($observation);
         return $result !== null ? true : false;
+    }
+
+    private function createObservation(Request $request) {
+        $observation = new Observation();
+        if ( $request->get('indicator') ) {
+            $observation->setIndicator($this->indicatorRepo->find($request->get('indicator')));
+        }
+        if ( $request->get('year') ) {
+            $observation->setYear($request->get('year'));
+        }
+        if ( $request->get('month') ) {
+            $observation->setMonth($request->get('month'));
+        }
+        return $observation;
     }
 
 }
