@@ -6,7 +6,6 @@
     <h3>{{'title.indicatorIndex' | trans }}</h3>
       <div {{ stimulus_controller('table', { 
                'url': path('indicator_index'),
-               'locale': app.request.locale|split('_')[0] 
             })}} data-action="entity:success->table#refreshContent">
          <div id="content" data-table-target="content">
             {{ include('indicator/_list.html.twig', { 
