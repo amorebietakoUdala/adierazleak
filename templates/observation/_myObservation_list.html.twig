@@ -40,9 +40,9 @@
                   <td>{{ 'label.noValueDefined' | trans }}</td>
                {% endif %}
                <td>
+                  {% set month = ( "now" | date("m") ) == 12 ? 1 : ( "now" | date("m") ) %}
+                  {% set year = ( "now" | date("m") ) == 12 ? ("now" | date("Y") ) + 1 : ( "now" | date("Y") ) %}
                   <a class="text-decoration-none" href="#" data-action="click->entity#new" 
-                     {% set month = ( "now" | date("m") ) == 12 ? 1 : ( "now" | date("m") ) %}
-                     {% set year = ( "now" | date("m") ) == 12 ? "now" | date("Y") + 1 : date("Y") %}
                      data-params="{{ { 
                         'indicator': indicators[loop.index0].id,
                         'year': year,
