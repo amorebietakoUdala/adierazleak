@@ -62,7 +62,7 @@ class ObservationType extends AbstractType
             'data_class' => Observation::class,
             'readonly' => false,
             'locale' => 'eu',
-            'allowedRoles' => ["ROLE_USER"],
+            'allowedRoles' => ["ROLE_ADIERAZLEAK"],
             'isAdmin' => false,
         ]);
     }

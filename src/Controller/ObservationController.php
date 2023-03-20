@@ -218,7 +218,7 @@ class ObservationController extends BaseController
         if ( null !== $roles ) {
             $cleanRoles = $this->removeUnnecesaryRoles($roles);
         }
-        if ($this->isGranted("ROLE_ADMIN") && count($cleanRoles) === 0 ) {
+        if ($this->isGranted("ROLE_ADMIN") && ( $cleanRoles === null || count($cleanRoles) === 0 ) ) {
             $indicators = $this->indicatorRepo->findAll();
         } elseif (null !== $cleanRoles) {
             $indicators = $this->indicatorRepo->findByRoles($cleanRoles);
@@ -228,6 +228,9 @@ class ObservationController extends BaseController
 
     private function removeUnnecesaryRoles($roles) {
         if (($key = array_search('ROLE_USER', $roles)) !== false) {
+            unset($roles[$key]);
+        }
+        if (($key = array_search('ROLE_ADIERAZLEAK', $roles)) !== false) {
             unset($roles[$key]);
         }
         if (($key = array_search('ROLE_ADMIN', $roles)) !== false) {

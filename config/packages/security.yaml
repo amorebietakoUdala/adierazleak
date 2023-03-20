@@ -21,6 +21,8 @@ security:
                 property: username
 #        logout: 
 #            path: app_logout
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_ADIERAZLEAK,ROLE_HAZ,ROLE_INFORMATIKA,ROLE_IDAZKARITZA,ROLE_GIZA_BALIABIDEAK,ROLE_EKONOMIA]
 
     firewalls:
         dev:
@@ -56,8 +58,8 @@ security:
     access_control:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/, roles: ROLE_USER }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/, roles: ROLE_ADIERAZLEAK }
+        # - { path: ^/profile, roles: ROLE_ADIERAZLEAK }
 
 when@test:
     security:

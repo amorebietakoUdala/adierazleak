@@ -1,5 +1,5 @@
 # Roles
-ROLE_USER: "Erabiltzailea"
+ROLE_ADIERAZLEAK: "Erabiltzailea"
 ROLE_ADMIN: "Admnistratzailea"
 ROLE_HAZ: "HAZ"
 ROLE_INFORMATIKA: "Informatika"

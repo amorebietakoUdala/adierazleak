@@ -13,6 +13,7 @@ class IndicatorSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $allowedRoles = array_combine($options['allowedRoles'],$options['allowedRoles']);
+        unset($allowedRoles["ROLE_ADIERAZLEAK"]);
         $builder
             ->add('requiredRoles', ChoiceType::class, [
                 'label' => 'indicator.requiredRoles',
@@ -28,7 +29,7 @@ class IndicatorSearchType extends AbstractType
     {
         $resolver->setDefaults([
            'data_class' => null,
-           'allowedRoles' => ["ROLE_USER"],
+           'allowedRoles' => ["ROLE_ADIERAZLEAK"],
         ]);
     }
 }

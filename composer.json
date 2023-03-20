@@ -1,12 +1,14 @@
 {
     "type": "project",
     "license": "proprietary",
+    "name": "amorebietakoudala/adierazleak",
+    "description": "Adierazleak sartzeko aplikazioa",
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.2.5|^8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "amorebietakoudala/user-bundle": "^1.4",
-        "composer/package-versions-deprecated": "1.11.99.4",
+        "composer/package-versions-deprecated": "^1.11.99.4",
         "doctrine/common": "^2",
         "doctrine/doctrine-bundle": "^2",
         "doctrine/doctrine-migrations-bundle": "^2.0",
