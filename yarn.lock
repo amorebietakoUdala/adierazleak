@@ -1580,6 +1580,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stimulus/core@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@stimulus/core@npm:2.0.0"
+  dependencies:
+    "@stimulus/mutation-observers": ^2.0.0
+  checksum: 28e33dfaf2db2e72b007f1798aa906d18080ca988c7f99919107d9a5456fcb2f7eef21f908232666b34070d975ce12f1922a20b2eded796b1bb937d7de7322cd
+  languageName: node
+  linkType: hard
+
+"@stimulus/multimap@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@stimulus/multimap@npm:2.0.0"
+  checksum: 0b2dbacb02f9ef2e1a0c873fb445cdd9443afe35e007218242ebfb49c99877e73a0c3e951151e3b69b1dd16cbae67fe8ef6eb19da3c64aad71864976347af6af
+  languageName: node
+  linkType: hard
+
+"@stimulus/mutation-observers@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@stimulus/mutation-observers@npm:2.0.0"
+  dependencies:
+    "@stimulus/multimap": ^2.0.0
+  checksum: b0fb739563d4944c09602b55a56fd3953d6efdb4a24a6a97a7400de0101cc63064c2daa612acd3f3af340d79815687ddd85bad700929647de29b4e9ca3ce10ba
+  languageName: node
+  linkType: hard
+
+"@stimulus/webpack-helpers@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@stimulus/webpack-helpers@npm:2.0.0"
+  checksum: 0ec66e238193533e61a8bee8fc868db776a446fb52f70bec5d65c398826ac443f64b541fd141e06c0505b2f03683df407a4b94d4429fcd3beebb37e2d74b575f
+  languageName: node
+  linkType: hard
+
 "@symfony/stimulus-bridge@npm:^3.1.1":
   version: 3.2.1
   resolution: "@symfony/stimulus-bridge@npm:3.2.1"
@@ -7096,6 +7128,7 @@ __metadata:
     sass: ^1.34.0
     sass-loader: ^13.2.0
     select2: ^4.0
+    stimulus: ^2.0.0
     stimulus-use: ^0.51.1
     sweetalert2: ^11.7.27
     tableexport.jquery.plugin: ^1.26.0
@@ -7598,6 +7631,16 @@ __metadata:
   peerDependencies:
     "@hotwired/stimulus": ">= 3"
   checksum: 2d67cafc4af241f89c707a3faa0a8c3f03288fe3893ef82918792301901e8292f6de53ef47ede7fc048b4179cb260c0e51887fcdaae31a6d93298ffb6aaa225b
+  languageName: node
+  linkType: hard
+
+"stimulus@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "stimulus@npm:2.0.0"
+  dependencies:
+    "@stimulus/core": ^2.0.0
+    "@stimulus/webpack-helpers": ^2.0.0
+  checksum: f72d8951c9e162514a7004367c5a26eba2fddcc59926e65d7308aa719582df8bf4dd79d6541579d8de1f8388e27f506cb6d77a14439a6fd6b78540c15af613e0
   languageName: node
   linkType: hard
 

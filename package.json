@@ -21,6 +21,7 @@
         "sass": "^1.34.0",
         "sass-loader": "^13.2.0",
         "select2": "^4.0",
+        "stimulus": "^2.0.0",
         "stimulus-use": "^0.51.1",
         "sweetalert2": "^11.7.27",
         "tableexport.jquery.plugin": "^1.26.0",
