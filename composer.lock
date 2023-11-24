@@ -54,11 +54,11 @@
         },
         {
             "name": "amorebietakoudala/user-bundle",
-            "version": "dev-main",
+            "version": "dev-SF6",
             "dist": {
                 "type": "path",
                 "url": "../../bundles/user-bundle",
-                "reference": "e55893d38b0b86e44839b273c01b94b887755dab"
+                "reference": "1c7afc9ef25bf74a5413b1cc2d9b27ff7aff345c"
             },
             "require": {
                 "doctrine/doctrine-bundle": "^2.1",

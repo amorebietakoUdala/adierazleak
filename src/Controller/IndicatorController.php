@@ -44,7 +44,7 @@ class IndicatorController extends BaseController
         }
 
         $template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'new.html.twig';
-        return $this->renderForm('indicator/' . $template, [
+        return $this->render('indicator/' . $template, [
             'indicator' => $indicator,
             'form' => $form,
         ], new Response(null, $form->isSubmitted() && !$form->isValid() ? 422 : 200,));
@@ -62,7 +62,7 @@ class IndicatorController extends BaseController
             'allowedRoles' => $this->getParameter('allowedRoles'),
         ]);
         $template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'show.html.twig';
-        return $this->renderForm('indicator/' . $template, [
+        return $this->render('indicator/' . $template, [
             'indicator' => $indicator,
             'form' => $form,
             'readonly' => true
@@ -88,7 +88,7 @@ class IndicatorController extends BaseController
         }
 
         $template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'edit.html.twig';
-        return $this->renderForm('indicator/' . $template, [
+        return $this->render('indicator/' . $template, [
             'indicator' => $indicator,
             'form' => $form,
             'readonly' => false
@@ -122,7 +122,7 @@ class IndicatorController extends BaseController
         $indicator = new Indicator();
         $form = $this->createForm(IndicatorType::class, $indicator);
         $template = !$ajax ? 'indicator/index.html.twig' : 'indicator/_list.html.twig';
-        return $this->renderForm($template, [
+        return $this->render($template, [
             'indicators' => $indicatorRepository->findAll(),
             'form' => $form,
         ]);
