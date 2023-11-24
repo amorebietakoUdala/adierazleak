@@ -7,37 +7,25 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=IndicatorRepository::class)
- */
-class Indicator
+#[ORM\Entity(repositoryClass: IndicatorRepository::class)]
+class Indicator implements \Stringable
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
-    /**
-     * @ORM\Column(type="string", length=1024)
-     */
-    private $descriptionEs;
+    #[ORM\Column(type: 'string', length: 1024)]
+    private ?string $descriptionEs = null;
 
-    /**
-     * @ORM\Column(type="string", length=1024)
-     */
-    private $descriptionEu;
+    #[ORM\Column(type: 'string', length: 1024)]
+    private ?string $descriptionEu = null;
 
-    /**
-     * @ORM\Column(type="json", nullable=true)
-     */
-    private $requiredRoles = [];
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $requiredRoles = [];
 
-    /**
-     * @ORM\OneToMany(targetEntity=Observation::class, mappedBy="indicator")
-     */
-    private $observations;
+    #[ORM\OneToMany(targetEntity: Observation::class, mappedBy: 'indicator')]
+    private \Doctrine\Common\Collections\Collection|array $observations;
 
     public function __construct()
     {
@@ -108,7 +96,7 @@ class Indicator
     /**
      * @return Collection|Observation[]
      */
-    public function getObservations(): Collection
+    public function getObservations(): mixed
     {
         return $this->observations;
     }

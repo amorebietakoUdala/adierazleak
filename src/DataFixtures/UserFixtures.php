@@ -8,11 +8,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends BaseFixture
 {
-    private $passwordHasher;
-
-    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    public function __construct(private readonly UserPasswordHasherInterface $passwordHasher)
     {
-        $this->passwordHasher = $passwordHasher;
     }
 
     protected function loadData(ObjectManager $manager)

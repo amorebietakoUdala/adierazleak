@@ -1,5 +1,3 @@
-import '../js/common/list.js';
-
 import $ from 'jquery';
 import { Controller } from '@hotwired/stimulus';
 

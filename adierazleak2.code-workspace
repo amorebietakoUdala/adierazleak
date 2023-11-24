@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../adierazleak"
+		},
+		{
+			"path": "../../bundles/user-bundle"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}

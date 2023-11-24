@@ -40,9 +40,7 @@ class ObservationType extends AbstractType
                     }
                 },
                 'label' => 'observation.indicator',
-                'choice_label' => function ($indicator) use ($locale) {
-                    return $locale === 'es' ? $indicator->getDescriptionEs() : $indicator->getDescriptionEu();
-                },
+                'choice_label' => fn($indicator) => $locale === 'es' ? $indicator->getDescriptionEs() : $indicator->getDescriptionEu(),
                 'disabled' => $readonly,
             ])
             ->add('value', NumberType::class,[

@@ -8,32 +8,22 @@ use App\Form\IndicatorSearchType;
 use App\Form\ObservationType;
 use App\Repository\IndicatorRepository;
 use App\Repository\ObservationRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/{_locale}/observation")
- */
+#[Route(path: '/{_locale}/observation')]
 class ObservationController extends BaseController
 {
 
-    private ObservationRepository $repo;
-    private IndicatorRepository $indicatorRepo;
-    private EntityManager $em;
+    public function __construct(
+        private readonly ObservationRepository $repo, 
+        private readonly IndicatorRepository $indicatorRepo, 
+        private readonly EntityManagerInterface $em
+    ) {}
 
-    public function __construct(ObservationRepository $repo, IndicatorRepository $indicatorRepo, EntityManagerInterface $em)
-    {
-        $this->repo = $repo;
-        $this->indicatorRepo = $indicatorRepo;
-        $this->em = $em;
-    }
-
-    /**
-     * @Route("/search/indicator/{indicator}", name="observation_search")
-     */
+    #[Route(path: '/search/indicator/{indicator}', name: 'observation_search')]
     public function search(Request $request, Indicator $indicator): Response {
         $this->loadQueryParameters($request);
         $ajax = $this->getAjax();
@@ -50,16 +40,15 @@ class ObservationController extends BaseController
         return $this->render($template, [
             'observations' => $observations,
             'indicator' => $indicator,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
 
     }
 
      /**
      * Creates or updates a observation
-     * 
-     * @Route("/new", name="observation_save", methods={"GET","POST"})
      */
+    #[Route(path: '/new', name: 'observation_save', methods: ['GET', 'POST'])]
     public function createOrSave(Request $request): Response
     {
         $this->loadQueryParameters($request);
@@ -87,7 +76,7 @@ class ObservationController extends BaseController
                 $this->em->persist($observation);
                 $this->em->flush();
                 if ($request->isXmlHttpRequest()) {
-                    return new Response(null, 204);
+                    return new Response(null, \Symfony\Component\HttpFoundation\Response::HTTP_NO_CONTENT);
                 }
                 return $this->redirectToRoute('myObservation_index');
             }
@@ -96,15 +85,14 @@ class ObservationController extends BaseController
         $template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'new.html.twig';
         return $this->render('observation/' . $template, [
             'observation' => $observation,
-            'form' => $form->createView(),
+            'form' => $form,
         ], new Response(null, $form->isSubmitted() && (!$form->isValid() || $error) ? 422 : 200,));
     }
 
     /**
      * Renders the observation form specified by id to edit it's fields
-     * 
-     * @Route("/{id}/edit", name="observation_edit", methods={"GET","POST"})
      */
+    #[Route(path: '/{id}/edit', name: 'observation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Observation $observation): Response
     {
         $form = $this->createForm(ObservationType::class, $observation, [
@@ -123,14 +111,12 @@ class ObservationController extends BaseController
         $template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'edit.html.twig';
         return $this->render('observation/' . $template, [
             'indicator' => $observation,
-            'form' => $form->createView(),
+            'form' => $form,
             'readonly' => false
         ], new Response(null, $form->isSubmitted() && !$form->isValid() ? 422 : 200,));
     }
 
-    /**
-     * @Route("/{id}/delete", name="observation_delete", methods={"DELETE"})
-     */
+    #[Route(path: '/{id}/delete', name: 'observation_delete', methods: ['DELETE'])]
     public function delete(Request $request, Observation $id): Response
     {
         if ($this->isCsrfTokenValid('delete'.$id->getId(), $request->get('_token'))) {
@@ -144,16 +130,15 @@ class ObservationController extends BaseController
                 return new Response(null, Response::HTTP_NO_CONTENT);
             }
         } else {
-            return new Response('messages.invalidCsrfToken', 422);
+            return new Response('messages.invalidCsrfToken', \Symfony\Component\HttpFoundation\Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
 
      /**
      * Show the observation form specified by id.
      * The observation can't be changed
-     * 
-     * @Route("/{id}", name="observation_show", methods={"GET"})
      */
+    #[Route(path: '/{id}', name: 'observation_show', methods: ['GET'])]
     public function show(Request $request, Observation $observation): Response
     {
         $form = $this->createForm(ObservationType::class, $observation, [
@@ -164,21 +149,19 @@ class ObservationController extends BaseController
         $template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'show.html.twig';
         return $this->render('observation/' . $template, [
             'observation' => $observation,
-            'form' => $form->createView(),
+            'form' => $form,
             'readonly' => true
         ], new Response(null, $form->isSubmitted() && !$form->isValid() ? 422 : 200,));
     }
 
-    /**
-     * @Route("/", name="myObservation_index")
-     */
+    #[Route(path: '/', name: 'myObservation_index')]
     public function index(Request $request): Response
     {
         $this->loadQueryParameters($request);
         $ajax = $this->getAjax();
         $roles = $this->getUser() !== null ? $this->getUser()->getRoles(): [];
         $observation = new Observation();
-        $requiredRoles = $request->get('roles') ? explode(',',$request->get('roles')) : $roles;
+        $requiredRoles = $request->get('roles') ? explode(',',(string) $request->get('roles')) : $roles;
         $searchForm = $this->createForm(IndicatorSearchType::class, [
             'requiredRoles' => $requiredRoles,
         ], [
@@ -204,8 +187,8 @@ class ObservationController extends BaseController
         return $this->render($template, [
             'indicators' => $indicators,
             'observations' => $lastObservations,
-            'form' => $form->createView(),
-            'searchForm' => $searchForm->createView(),
+            'form' => $form,
+            'searchForm' => $searchForm,
             'filters' => [
                 'roles' => $requiredRoles,
             ],

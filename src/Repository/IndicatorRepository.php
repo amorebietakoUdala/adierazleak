@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Indicator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -22,15 +23,15 @@ class IndicatorRepository extends ServiceEntityRepository
     /**
      * @return Indicator[] Returns an array of Indicator objects
      */
-    public function findByRoles($roles)
+    public function findByRoles($roles): array
     {
         return $this->findByRolesQB($roles)->getQuery()->getResult();
     }
-    
+
     /**
      * @return QueryBuilder Returns a QueryBuilder of Indicator by roles
      */
-    public function findByRolesQB($roles)
+    public function findByRolesQB($roles): QueryBuilder
     {
         $qb = $this->createQueryBuilder('i');
         $i = 0; 
@@ -47,7 +48,7 @@ class IndicatorRepository extends ServiceEntityRepository
     /**
      * @return QueryBuilder Returns a QueryBuilder of all Indicators
      */
-    public function findAllQB()
+    public function findAllQB(): QueryBuilder
     {
         $qb = $this->createQueryBuilder('i')
            ->orderBy('i.id', 'ASC');
