@@ -24,3 +24,6 @@ phpstan.neon
 ###< phpstan/phpstan ###
 
 /public/translations/
+
+composer.json.prod
+composer.json.dev

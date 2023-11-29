@@ -8,7 +8,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "amorebietakoudala/stimulus-controller-bundle": "^1.0",
-        "amorebietakoudala/user-bundle": "*@dev",
+        "amorebietakoudala/user-bundle": "^2.0",
         "doctrine/annotations": "^2.0",
         "doctrine/doctrine-bundle": "^2.10",
         "doctrine/doctrine-migrations-bundle": "^3.2",
@@ -39,7 +39,6 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "fzaninotto/faker": "^1.9",
         "rector/rector": "^0.18.10",
         "symfony/debug-bundle": "6.3.*",
         "symfony/maker-bundle": "^1.18",
@@ -57,20 +56,13 @@
             "symfony/runtime": true
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable" : true,
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
-            "AMREU\\UserBundle\\": "../bundles/user-bundle/src/"
+            "App\\": "src/"
         }
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../../bundles/user-bundle"
-        }
-    ],
     "autoload-dev": {
         "psr-4": {
             "App\\Tests\\": "tests/"
