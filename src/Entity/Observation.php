@@ -5,43 +5,29 @@ namespace App\Entity;
 use App\Repository\ObservationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ObservationRepository::class)
- */
+#[ORM\Entity(repositoryClass: ObservationRepository::class)]
 class Observation
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $year;
+    #[ORM\Column(type: 'integer')]
+    private ?int $year = null;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $month;
+    #[ORM\Column(type: 'integer')]
+    private ?int $month = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Indicator::class, inversedBy="observations")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $indicator;
+    #[ORM\ManyToOne(targetEntity: Indicator::class, inversedBy: 'observations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?\App\Entity\Indicator $indicator = null;
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $value;
+    #[ORM\Column(type: 'float')]
+    private ?float $value = null;
 
-    /**
-     * @ORM\Column(type="string", length=1024, nullable=true)
-     */
-    private $notes;
+    #[ORM\Column(type: 'string', length: 1024, nullable: true)]
+    private ?string $notes = null;
 
     public function getId(): ?int
     {

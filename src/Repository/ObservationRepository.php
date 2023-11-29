@@ -21,10 +21,10 @@ class ObservationRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Observation[] Returns an array of Observation objects
+     * @return Observation|null Returns an array of Observation objects
      */
 
-    public function findLastObservationForIndicator(Indicator $indicators)
+    public function findLastObservationForIndicator(Indicator $indicators): ?Observation
     {
         $qb = $this->findLastObservationForIndicatorQB($indicators);
         $result = $qb->getResult();

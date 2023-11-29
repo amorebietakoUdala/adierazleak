@@ -9,9 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_home")
-     */
+    #[Route(path: '/', name: 'app_home')]
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();

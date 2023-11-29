@@ -34,9 +34,7 @@ class ObservationFixtures extends BaseFixture
 
     public function getDependencies()
     {
-        return array(
-            IndicatorFixtures::class,
-        );
+        return [IndicatorFixtures::class];
     }
 
 }

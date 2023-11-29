@@ -19,3 +19,11 @@ yarn-error.log
 ./composer.json.*
 
 /.yarn/
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
+
+/public/translations/
+
+composer.json.prod
+composer.json.dev
