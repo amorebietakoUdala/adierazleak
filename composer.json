@@ -42,7 +42,6 @@
         "rector/rector": "^0.18.10",
         "symfony/debug-bundle": "6.4.*",
         "symfony/maker-bundle": "^1.18",
-        "symfony/monolog-bundle": "^3.0",
         "symfony/stopwatch": "6.4.*",
         "symfony/web-profiler-bundle": "6.4.*"
     },
