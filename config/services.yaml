@@ -5,6 +5,10 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     allowedRoles: ["ROLE_ADIERAZLEAK","ROLE_HAZ", "ROLE_INFORMATIKA", "ROLE_IDAZKARITZA", "ROLE_GIZA_BALIABIDEAK", "ROLE_EKONOMIA"]
+    department: '%env(DEPARTMENT)%'
+    contactEmail: '%env(CONTACT_EMAIL)%'
+    departmentDefault: '%env(DEPARTMENT_DEFAULT)%'
+    contactEmailDefault: '%env(CONTACT_EMAIL_DEFAULT)%'
 
 services:
     Symfony\Component\Ldap\Ldap:
@@ -26,6 +30,11 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $department: '%department%'
+            $contactEmail: '%contactEmail%'
+            $departmentDefault: '%departmentDefault%'
+            $contactEmailDefault: '%contactEmailDefault%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
