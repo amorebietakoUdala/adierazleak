@@ -19,7 +19,6 @@
         "popper.js": "^1.16.1",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.34.0",
-        "sass-loader": "^13.2.0",
         "select2": "^4.0",
         "stimulus": "^2.0.0",
         "stimulus-use": "^0.51.1",
