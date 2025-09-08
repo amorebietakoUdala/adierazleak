@@ -5512,7 +5512,7 @@ __metadata:
     select2: ^4.0
     stimulus: ^2.0.0
     stimulus-use: ^0.51.1
-    sweetalert2: ^11.7.27
+    sweetalert2: ^11.23.0
     tableexport.jquery.plugin: ^1.26.0
     webpack: ^5.76.0
     webpack-cli: ^4.9.2
@@ -5959,10 +5959,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sweetalert2@npm:^11.7.27":
-  version: 11.10.1
-  resolution: "sweetalert2@npm:11.10.1"
-  checksum: 0e2ad6a278de1d207a138c24c271574b09abbb79ecb4b4047fa8f2ccb9f54232cf6fa48e1c5e6be812a7b3419532461281a4a8f90336d17a6b6b2b4604139f9a
+"sweetalert2@npm:^11.23.0":
+  version: 11.23.0
+  resolution: "sweetalert2@npm:11.23.0"
+  checksum: e20c9f06de194e733ae89dfc9655883e23cc485d4e56181ef61bae22ac0007f8d90466b4e7cd3b727fd5ea4d590972974e5346878590b5961ffbe8ba4270ba4c
   languageName: node
   linkType: hard
 
