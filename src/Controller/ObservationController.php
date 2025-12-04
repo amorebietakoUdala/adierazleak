@@ -9,6 +9,7 @@ use App\Form\ObservationType;
 use App\Repository\IndicatorRepository;
 use App\Repository\ObservationRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -76,7 +77,7 @@ class ObservationController extends BaseController
                 $this->em->persist($observation);
                 $this->em->flush();
                 if ($request->isXmlHttpRequest()) {
-                    return new Response(null, \Symfony\Component\HttpFoundation\Response::HTTP_NO_CONTENT);
+                    return new Response(null, Response::HTTP_NO_CONTENT);
                 }
                 return $this->redirectToRoute('myObservation_index');
             }
@@ -93,7 +94,7 @@ class ObservationController extends BaseController
      * Renders the observation form specified by id to edit it's fields
      */
     #[Route(path: '/{id}/edit', name: 'observation_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Observation $observation): Response
+    public function edit(Request $request, #[MapEntity(id: 'id')]  Observation $observation): Response
     {
         $form = $this->createForm(ObservationType::class, $observation, [
             'readonly' => false,
@@ -117,7 +118,7 @@ class ObservationController extends BaseController
     }
 
     #[Route(path: '/{id}/delete', name: 'observation_delete', methods: ['DELETE'])]
-    public function delete(Request $request, Observation $id): Response
+    public function delete(Request $request, #[MapEntity(id: 'id')] Observation $id): Response
     {
         if ($this->isCsrfTokenValid('delete'.$id->getId(), $request->get('_token'))) {
             $this->em->remove($id);
@@ -130,7 +131,7 @@ class ObservationController extends BaseController
                 return new Response(null, Response::HTTP_NO_CONTENT);
             }
         } else {
-            return new Response('messages.invalidCsrfToken', \Symfony\Component\HttpFoundation\Response::HTTP_UNPROCESSABLE_ENTITY);
+            return new Response('messages.invalidCsrfToken', Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
 
@@ -139,7 +140,7 @@ class ObservationController extends BaseController
      * The observation can't be changed
      */
     #[Route(path: '/{id}', name: 'observation_show', methods: ['GET'])]
-    public function show(Request $request, Observation $observation): Response
+    public function show(Request $request, #[MapEntity(id: 'id')] Observation $observation): Response
     {
         $form = $this->createForm(ObservationType::class, $observation, [
             'readonly' => true,

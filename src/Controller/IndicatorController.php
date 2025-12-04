@@ -6,6 +6,7 @@ use App\Entity\Indicator;
 use App\Form\IndicatorType;
 use App\Repository\IndicatorRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,11 +14,19 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/{_locale}/admin/indicator')]
 class IndicatorController extends BaseController
 {
+
+    public function __construct(
+        private IndicatorRepository $repo,
+        private EntityManagerInterface $entityManager,
+        private IndicatorRepository $indicatorRepository,
+    )
+    {}
+    
     /**
      * Creates or updates a indicator
      */
     #[Route(path: '/new', name: 'indicator_save', methods: ['GET', 'POST'])]
-    public function createOrSave(Request $request, IndicatorRepository $repo, EntityManagerInterface $entityManager): Response
+    public function createOrSave(Request $request): Response
     {
         $this->loadQueryParameters($request);
         $indicator = new Indicator();
@@ -31,14 +40,14 @@ class IndicatorController extends BaseController
             /** @var Indicator $data */
             $data = $form->getData();
             if (null !== $data->getId()) {
-                $indicator = $repo->find($data->getId());
+                $indicator = $this->repo->find($data->getId());
                 $indicator->fill($data);
             }
-            $entityManager->persist($indicator);
-            $entityManager->flush();
+            $this->entityManager->persist($indicator);
+            $this->entityManager->flush();
 
             if ($request->isXmlHttpRequest()) {
-                return new Response(null, \Symfony\Component\HttpFoundation\Response::HTTP_NO_CONTENT);
+                return new Response(null, Response::HTTP_NO_CONTENT);
             }
             return $this->redirectToRoute('indicator_index');
         }
@@ -55,7 +64,7 @@ class IndicatorController extends BaseController
      * The indicator can't be changed
      */
     #[Route(path: '/{id}', name: 'indicator_show', methods: ['GET'])]
-    public function show(Request $request, Indicator $indicator): Response
+    public function show( Request $request, #[MapEntity(id: 'id')] Indicator $indicator): Response
     {
         $form = $this->createForm(IndicatorType::class, $indicator, [
             'readonly' => true,
@@ -73,7 +82,7 @@ class IndicatorController extends BaseController
      * Renders the indicator form specified by id to edit it's fields
      */
     #[Route(path: '/{id}/edit', name: 'indicator_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Indicator $indicator, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, #[MapEntity(id: 'id')] Indicator $indicator): Response
     {
         $form = $this->createForm(IndicatorType::class, $indicator, [
             'readonly' => false,
@@ -83,8 +92,8 @@ class IndicatorController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Indicator $indicator */
             $indicator = $form->getData();
-            $entityManager->persist($indicator);
-            $entityManager->flush();
+            $this->entityManager->persist($indicator);
+            $this->entityManager->flush();
         }
 
         $template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'edit.html.twig';
@@ -96,18 +105,18 @@ class IndicatorController extends BaseController
     }
 
     #[Route(path: '/{id}/delete', name: 'indicator_delete', methods: ['DELETE'])]
-    public function delete(Request $request, Indicator $id, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, #[MapEntity(id: 'id')] Indicator $id): Response
     {
         if ($this->isCsrfTokenValid('delete'.$id->getId(), $request->get('_token'))) {
-            $entityManager->remove($id);
-            $entityManager->flush();
+            $this->entityManager->remove($id);
+            $this->entityManager->flush();
             if (!$request->isXmlHttpRequest()) {
                 return $this->redirectToRoute('indicator_index');
             } else {
-                return new Response(null, \Symfony\Component\HttpFoundation\Response::HTTP_NO_CONTENT);
+                return new Response(null, Response::HTTP_NO_CONTENT);
             }
         } else {
-            return new Response('messages.invalidCsrfToken', \Symfony\Component\HttpFoundation\Response::HTTP_UNPROCESSABLE_ENTITY);
+            return new Response('messages.invalidCsrfToken', Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
 
@@ -115,7 +124,7 @@ class IndicatorController extends BaseController
      * List all the indicators
      */
     #[Route(path: '/', name: 'indicator_index', methods: ['GET'])]
-    public function index(IndicatorRepository $indicatorRepository, Request $request): Response
+    public function index(Request $request): Response
     {
         $this->loadQueryParameters($request);
         $ajax = $this->getAjax();
@@ -123,7 +132,7 @@ class IndicatorController extends BaseController
         $form = $this->createForm(IndicatorType::class, $indicator);
         $template = !$ajax ? 'indicator/index.html.twig' : 'indicator/_list.html.twig';
         return $this->render($template, [
-            'indicators' => $indicatorRepository->findAll(),
+            'indicators' => $this->indicatorRepository->findAll(),
             'form' => $form,
         ]);
     }
