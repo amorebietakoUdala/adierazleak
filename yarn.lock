@@ -7,7 +7,7 @@ __metadata:
 
 "@amorebietakoudala/stimulus-controller-bundle@file:vendor/amorebietakoudala/stimulus-controller-bundle/assets::locator=root-workspace-0b6124%40workspace%3A.":
   version: 0.1.0
-  resolution: "@amorebietakoudala/stimulus-controller-bundle@file:vendor/amorebietakoudala/stimulus-controller-bundle/assets#vendor/amorebietakoudala/stimulus-controller-bundle/assets::hash=704255&locator=root-workspace-0b6124%40workspace%3A."
+  resolution: "@amorebietakoudala/stimulus-controller-bundle@file:vendor/amorebietakoudala/stimulus-controller-bundle/assets#vendor/amorebietakoudala/stimulus-controller-bundle/assets::hash=090c54&locator=root-workspace-0b6124%40workspace%3A."
   dependencies:
     "@eonasdan/tempus-dominus": ^6.2.10
     "@hotwired/stimulus": ^3.0.0
@@ -19,18 +19,7 @@ __metadata:
     select2-bootstrap-5-theme: ^1.3.0
     sweetalert2: 11.4.8
     tableexport.jquery.plugin: ^1.26.0
-  peerDependencies:
-    "@eonasdan/tempus-dominus": ^6.2.10
-    "@hotwired/stimulus": ^3.0.0
-    "@popperjs/core": ^2.11.8
-    bootstrap: ^5.2.3
-    bootstrap-table: 1.21.1
-    jquery: 3.6.1
-    select2: ^4.1.0-rc.0
-    select2-bootstrap-5-theme: ^1.3.0
-    sweetalert2: 11.4.8
-    tableexport.jquery.plugin: ^1.26.0
-  checksum: b2c9f71a5253e10eba7ef1b85f7456d0f4a47433d853faa62020a55fec85d5a2b2ad404d73178fc750cc4c513a27c0e2e8dbc040b6a78b15950137bf1da6860c
+  checksum: 12d9471dcd2fc1136424f7a9c0f3a797dd6b7dd690444e7a855a8911897939886dc78b790ddd7e269e48bc2e24cef3d901335ce336e42e45f4a851ad5b6f6b10
   languageName: node
   linkType: hard
 
@@ -1299,7 +1288,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.26.9":
+"@babel/runtime@npm:^7.28.4":
   version: 7.28.4
   resolution: "@babel/runtime@npm:7.28.4"
   checksum: 934b0a0460f7d06637d93fcd1a44ac49adc33518d17253b5a0b55ff4cb90a45d8fe78bf034b448911dbec7aff2a90b918697559f78d21c99ff8dbadae9565b55
@@ -1677,11 +1666,8 @@ __metadata:
 
 "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/assets::locator=root-workspace-0b6124%40workspace%3A.":
   version: 2.30.0
-  resolution: "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/assets#vendor/symfony/ux-turbo/assets::hash=06bd21&locator=root-workspace-0b6124%40workspace%3A."
-  peerDependencies:
-    "@hotwired/stimulus": ^3.0.0
-    "@hotwired/turbo": ^7.1.0 || ^8.0
-  checksum: 89dfee6767f27af57e51ec7280cb9bf5185fa18c42023bec3961e3f7210ceb74cd38ba7d6fc0d4870cc663499eca5ce0966ada7db886c792a96267de5dadcf2c
+  resolution: "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/assets#vendor/symfony/ux-turbo/assets::hash=276b95&locator=root-workspace-0b6124%40workspace%3A."
+  checksum: 806673bffe250b775d41e5136c1bf1b7857d1aedefe9c25b43716470d1c7fd82c87e3e6523f12038a8a45a38ed83e5ed3b1b6ca3c852d4dd2709839cc74f503d
   languageName: node
   linkType: hard
 
@@ -4192,10 +4178,10 @@ __metadata:
   linkType: hard
 
 "jspdf@npm:>=2.0.0":
-  version: 3.0.3
-  resolution: "jspdf@npm:3.0.3"
+  version: 4.0.0
+  resolution: "jspdf@npm:4.0.0"
   dependencies:
-    "@babel/runtime": ^7.26.9
+    "@babel/runtime": ^7.28.4
     canvg: ^3.0.11
     core-js: ^3.6.0
     dompurify: ^3.2.4
@@ -4211,7 +4197,7 @@ __metadata:
       optional: true
     html2canvas:
       optional: true
-  checksum: e120e2919753d5c943400549ca6823d0d67974a34681a8e91f23561186a2caee4196d2d07c5491721a6638e5a8bb54e2908722393ea5213f663544356c473fab
+  checksum: de3a8e068cadb45b3ee436c8d7ba5f8c414f339f0bc35a1c39bb69a2850b3ee0827117680023ccb842355ef4d493900241a630b91546af8139c88bfd423f13f6
   languageName: node
   linkType: hard
 
