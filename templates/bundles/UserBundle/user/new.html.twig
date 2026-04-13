@@ -1,5 +1,4 @@
 {% extends "@User/layout.html.twig" %}
-{% trans_default_domain 'user_bundle' %}
 
 {% block title %}New User{% endblock %}
 
@@ -8,5 +7,5 @@
 {% endblock %}
 
 {% block user_content %}
-	{{ include ('@User/user/_form.html.twig', {}) }}
+    {{ include ('@User/user/_form.html.twig', {}) }}
 {% endblock user_content %}

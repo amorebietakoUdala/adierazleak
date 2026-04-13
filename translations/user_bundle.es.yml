@@ -1,4 +1,5 @@
 # Roles
+ROLE_USER: "No permitido"
 ROLE_ADIERAZLEAK: "Usuario"
 ROLE_ADMIN: "Administrador"
 ROLE_HAZ: SAC

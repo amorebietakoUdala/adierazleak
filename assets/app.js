@@ -10,7 +10,6 @@ import './css/app.css';
 
 // start the Stimulus application
 import './bootstrap';
-import './turbo/turbo-helper';
 
 import 'bootstrap';
 import 'popper.js';
