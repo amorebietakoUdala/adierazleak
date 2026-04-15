@@ -120,7 +120,7 @@ class ObservationController extends BaseController
     #[Route(path: '/{id}/delete', name: 'observation_delete', methods: ['DELETE'])]
     public function delete(Request $request, #[MapEntity(id: 'id')] Observation $id): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$id->getId(), $request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$id->getId(), $request->query->get('_token'))) {
             $this->em->remove($id);
             $this->em->flush();
             if (!$request->isXmlHttpRequest()) {
@@ -162,7 +162,7 @@ class ObservationController extends BaseController
         $ajax = $this->getAjax();
         $roles = $this->getUser() !== null ? $this->getUser()->getRoles(): [];
         $observation = new Observation();
-        $requiredRoles = $request->get('roles') ? explode(',',(string) $request->get('roles')) : $roles;
+        $requiredRoles = $request->query->get('roles') ? explode(',',(string) $request->query->get('roles')) : $roles;
         $searchForm = $this->createForm(IndicatorSearchType::class, [
             'requiredRoles' => $requiredRoles,
         ], [
@@ -230,14 +230,14 @@ class ObservationController extends BaseController
 
     private function createObservation(Request $request) {
         $observation = new Observation();
-        if ( $request->get('indicator') ) {
-            $observation->setIndicator($this->indicatorRepo->find($request->get('indicator')));
+        if ( $request->query->get('indicator') ) {
+            $observation->setIndicator($this->indicatorRepo->find($request->query->get('indicator')));
         }
-        if ( $request->get('year') ) {
-            $observation->setYear($request->get('year'));
+        if ( $request->query->get('year') ) {
+            $observation->setYear($request->query->get('year'));
         }
-        if ( $request->get('month') ) {
-            $observation->setMonth($request->get('month'));
+        if ( $request->query->get('month') ) {
+            $observation->setMonth($request->query->get('month'));
         }
         return $observation;
     }
